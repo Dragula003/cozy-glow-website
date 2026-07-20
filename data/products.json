@@ -1,0 +1,91 @@
+[
+{
+  "name": "Botanical Wax Sachet",
+  "category": "sachet",
+  "tag": "",
+  "price": 349,
+  "stock": 30,
+  "scent": "Lavender · Rose · Dried botanicals",
+  "desc": "Flameless fragrance for drawers, wardrobes, and small spaces. A wearable piece of art.",
+  "burn": "Lasts 4–6 weeks",
+  "size": "Single tablet",
+  "color": "#F5EEE8",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": "/images/botanical-sachet.jpg"
+}
+,
+{
+  "name": "Cinnamon Spice",
+  "category": "candle",
+  "tag": "bestseller",
+  "price": 599,
+  "stock": 18,
+  "scent": "Cinnamon bark · Clove · Warm amber",
+  "desc": "Spicy, rich, and festive. The scent of holiday mornings and cozy kitchens.",
+  "burn": "40–45 hours",
+  "size": "200g · 8oz jar",
+  "color": "#FAEEE0",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": "/images/cinnamon-spice.jpg"
+}
+,
+{
+  "name": "The Cozy Gift Box",
+  "category": "gift",
+  "tag": "",
+  "price": 1399,
+  "stock": 8,
+  "scent": "Curated fragrance pairing",
+  "desc": "2 candles + 2 botanical sachets, beautifully packaged. Perfect for every occasion.",
+  "burn": "Varies by selection",
+  "size": "Gift box set",
+  "color": "#F5EEE8",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": "/images/cozy-gift-box.jpg"
+}
+,
+{
+  "name": "Eucalyptus & Mint",
+  "category": "candle",
+  "tag": "new",
+  "price": 599,
+  "stock": 20,
+  "scent": "Fresh eucalyptus · Cool mint · White musk",
+  "desc": "Crisp, clean, and invigorating. Perfect for mornings or a fresh start.",
+  "burn": "40–45 hours",
+  "size": "200g · 8oz jar",
+  "color": "#EBF0E8",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": "/images/eucalyptus-mint.jpg"
+}
+,
+{
+  "name": "Lavender Dreams",
+  "category": "candle",
+  "tag": "",
+  "price": 599,
+  "stock": 12,
+  "scent": "French lavender · Chamomile · Cedarwood",
+  "desc": "Wind down and breathe. A soothing blend for bedtime rituals and slow evenings.",
+  "burn": "40–45 hours",
+  "size": "200g · 8oz jar",
+  "color": "#F0EAF5",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": "/images/lavender-dreams.jpg"
+}
+,
+{
+  "name": "Vanilla Amber",
+  "category": "candle",
+  "tag": "bestseller",
+  "price": 599,
+  "stock": 15,
+  "scent": "Warm vanilla · Amber · Sandalwood",
+  "desc": "A deeply warm and comforting fragrance — like a fireside evening wrapped in cashmere.",
+  "burn": "40–45 hours",
+  "size": "200g · 8oz jar",
+  "color": "#F3E8DC",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": "/images/vanilla-amber.jpg"
+}
+]

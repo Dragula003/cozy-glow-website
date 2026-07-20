@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cozy Glow Candles — Handcrafted with Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">The Cozy Glow</a>
+  <ul class="nav-links">
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#scents">Scents</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="https://www.instagram.com/thecozyglowcandles/" target="_blank" class="nav-cta">Instagram ↗</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Handcrafted with intention</p>
+    <h1 class="hero-title">Light up your space with <em>warmth & soul</em></h1>
+    <p class="hero-sub">Small-batch, handpoured candles and wax sachets made with premium soy wax and carefully curated fragrances — for every mood, every season.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Shop the Collection</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-container">
+      <img id="hero-image" src="" alt="The Cozy Glow candle collection" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-label">Pure & Natural</div>
+      <div class="hero-badge-value">100% Soy Wax</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item">Handpoured with Love</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">100% Soy Wax</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Premium Fragrances</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Small Batch Production</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Botanical Wax Sachets</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Gifting & Custom Orders</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Handpoured with Love</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">100% Soy Wax</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Premium Fragrances</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Small Batch Production</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Botanical Wax Sachets</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Gifting & Custom Orders</span><span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<!-- PRODUCTS — loaded dynamically -->
+<section id="products">
+  <div class="container">
+    <div class="products-header">
+      <div>
+        <p class="section-label">The Collection</p>
+        <h2 class="section-title">Shop Our Favourites</h2>
+      </div>
+      <a href="https://www.instagram.com/thecozyglowcandles/" target="_blank" class="btn-ghost">View All on Instagram ↗</a>
+    </div>
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="candle">Candles</button>
+      <button class="filter-pill" data-filter="sachet">Wax Sachets</button>
+      <button class="filter-pill" data-filter="gift">Gift Sets</button>
+      <button class="filter-pill" data-filter="wax-melt">Wax Melts</button>
+    </div>
+    <div class="product-grid" id="product-grid">
+      <div class="no-products" style="opacity:0.5">Loading products...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-box">
+        <img id="about-image" src="" alt="Our workshop" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+      </div>
+      <div>
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">Born from a love of warmth & fragrance</h2>
+        <p style="color:var(--mid);line-height:1.8;margin-bottom:1rem" id="about-text-1">The Cozy Glow began in a small kitchen with a passion for creating spaces that feel safe, warm, and beautiful. Every candle and wax sachet is handcrafted in small batches, ensuring the utmost care in each piece that leaves our hands.</p>
+        <p style="color:var(--mid);line-height:1.8" id="about-text-2">We believe your home deserves the best — pure soy wax, phthalate-free fragrances, and botanicals that tell a story. No fillers, no shortcuts.</p>
+        <div class="values-list">
+          <div class="value-item"><div class="value-icon">🌿</div><div class="value-text"><h4>Clean & Conscious</h4><p>100% natural soy wax, cotton wicks, phthalate-free fragrance oils</p></div></div>
+          <div class="value-item"><div class="value-icon">🤲</div><div class="value-text"><h4>Truly Handmade</h4><p>Each piece handpoured and finished — never mass produced</p></div></div>
+          <div class="value-item"><div class="value-icon">🎁</div><div class="value-text"><h4>Perfect for Gifting</h4><p>Custom orders, gift sets, and occasion-specific collections</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENTS -->
+<section id="scents">
+  <div class="container">
+    <p class="section-label">Fragrance Universe</p>
+    <h2 class="section-title" style="color:var(--cream)">Scent families we love</h2>
+    <p class="section-sub">Every fragrance is thoughtfully chosen to evoke a feeling.</p>
+    <div class="scents-grid">
+      <div class="scent-item"><div class="scent-icon">🍂</div><div class="scent-name">Warm & Woody</div><div class="scent-desc">Grounding, earthy scents that feel like a fireside hug</div><div class="scent-notes"><span class="scent-note">Sandalwood</span><span class="scent-note">Amber</span><span class="scent-note">Cedar</span></div></div>
+      <div class="scent-item"><div class="scent-icon">🌸</div><div class="scent-name">Floral & Soft</div><div class="scent-desc">Delicate blooms that bring garden elegance indoors</div><div class="scent-notes"><span class="scent-note">Rose</span><span class="scent-note">Lavender</span><span class="scent-note">Jasmine</span></div></div>
+      <div class="scent-item"><div class="scent-icon">🍋</div><div class="scent-name">Fresh & Citrus</div><div class="scent-desc">Bright, energising notes that uplift any room</div><div class="scent-notes"><span class="scent-note">Lemon</span><span class="scent-note">Bergamot</span><span class="scent-note">Mint</span></div></div>
+      <div class="scent-item"><div class="scent-icon">🌙</div><div class="scent-name">Sweet & Gourmand</div><div class="scent-desc">Cosy, dessert-like warmth for slow, quiet evenings</div><div class="scent-notes"><span class="scent-note">Vanilla</span><span class="scent-note">Cinnamon</span><span class="scent-note">Brown Sugar</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="container" style="text-align:center">
+    <p class="section-label" style="justify-content:center;display:flex">Why Cozy Glow</p>
+    <h2 class="section-title">The difference you'll feel</h2>
+    <p class="section-sub" style="margin:0 auto 3rem">Every choice we make is deliberate.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🌱</div><h3 class="why-title">Soy Wax Only</h3><p class="why-desc">100% natural soy wax for a cleaner, longer, cooler burn. No paraffin.</p></div>
+      <div class="why-card"><div class="why-icon">🧵</div><h3 class="why-title">Cotton Wicks</h3><p class="why-desc">Lead-free, unbleached cotton wicks for a clean flame and minimal soot.</p></div>
+      <div class="why-card"><div class="why-icon">🔬</div><h3 class="why-title">Phthalate-Free</h3><p class="why-desc">Our fragrance oils are carefully sourced — safe for you, your family, and pets.</p></div>
+      <div class="why-card"><div class="why-icon">✨</div><h3 class="why-title">Small Batch</h3><p class="why-desc">Never mass-produced. Every piece made with full attention and care.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container" style="text-align:center">
+    <p class="section-label" style="display:flex;justify-content:center">How It's Made</p>
+    <h2 class="section-title">From our hands to your home</h2>
+    <p class="section-sub" style="margin:0 auto 4rem">A slow, mindful process — because good things take time.</p>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><h4 class="step-title">Sourcing</h4><p class="step-desc">Premium soy wax, cotton wicks, and phthalate-free fragrances from trusted suppliers</p></div>
+      <div class="process-step"><div class="step-num">02</div><h4 class="step-title">Blending</h4><p class="step-desc">Wax is melted and fragrance carefully measured at the perfect temperature</p></div>
+      <div class="process-step"><div class="step-num">03</div><h4 class="step-title">Pouring</h4><p class="step-desc">Each candle is hand-poured slowly into glass vessels or silicone moulds</p></div>
+      <div class="process-step"><div class="step-num">04</div><h4 class="step-title">Curing</h4><p class="step-desc">Every piece cures for 48 hours before quality checks and beautiful packaging</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <p class="section-label">Happy Customers</p>
+    <h2 class="section-title">What people are saying</h2>
+    <div class="testi-grid" id="testimonials-grid">
+      <!-- Testimonials loaded from CMS -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="cta-strip">
+  <div class="container">
+    <p class="section-label" style="display:flex;justify-content:center">Custom Orders</p>
+    <h2 class="section-title">Want something special?</h2>
+    <p class="section-sub" style="margin:0 auto 2.5rem">Weddings, corporate gifting, birthdays, festive sets — we do it all.</p>
+    <a href="https://www.instagram.com/thecozyglowcandles/" target="_blank" class="btn-primary">DM Us on Instagram ↗</a>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="newsletter-inner">
+    <p class="section-label" style="justify-content:center;display:flex">Stay in the Loop</p>
+    <h2 class="section-title" style="font-size:1.8rem;margin-bottom:0.75rem">New drops & cozy updates</h2>
+    <p style="color:var(--mid);margin-bottom:1.75rem;font-size:0.92rem">Join our community for early access to new fragrances and seasonal collections.</p>
+    <form class="newsletter-form" name="newsletter" netlify>
+      <input type="email" id="nl-email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="newsletter-message" style="margin-top:1rem;font-size:0.85rem;color:var(--mid);display:none"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#" style="display:block;margin-bottom:1rem;color:var(--cream);font-family:'Playfair Display',serif;font-size:1.15rem;text-decoration:none">The Cozy Glow Candles</a>
+      <p>Handcrafted candles and wax sachets made with love, premium soy wax, and thoughtfully curated fragrances.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/thecozyglowcandles/" target="_blank" class="social-btn">IG</a>
+        <a href="mailto:hello@thecozyglowcandles.com" class="social-btn">✉</a>
+      </div>
+    </div>
+    <div class="footer-col"><h5>Shop</h5><ul><li><a href="#products">All Candles</a></li><li><a href="#products">Wax Sachets</a></li><li><a href="#products">Gift Sets</a></li><li><a href="#products">Seasonal Collection</a></li></ul></div>
+    <div class="footer-col"><h5>Information</h5><ul><li><a href="#about">Our Story</a></li><li><a href="#process">How It's Made</a></li><li><a href="#scents">Fragrance Guide</a></li><li><a href="#why">Candle Care</a></li></ul></div>
+    <div class="footer-col"><h5>Get in Touch</h5><ul><li><a href="https://www.instagram.com/thecozyglowcandles/" target="_blank">Instagram</a></li><li><a href="#cta-strip">Custom Orders</a></li><li><a href="#newsletter">Newsletter</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 The Cozy Glow Candles. All rights reserved.</span>
+    <span>Made with 🕯️ & love</span>
+  </div>
+</footer>
+
+<a href="/admin" class="admin-fab">⚙ Manage Site</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>

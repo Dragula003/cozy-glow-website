@@ -1,0 +1,14 @@
+{
+  "name": "The Cozy Gift Box",
+  "category": "gift",
+  "tag": "",
+  "price": 1399,
+  "stock": 8,
+  "scent": "Curated fragrance pairing",
+  "desc": "2 candles + 2 botanical sachets, beautifully packaged. Perfect for every occasion.",
+  "burn": "Varies by selection",
+  "size": "Gift box set",
+  "color": "#F5EEE8",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": "/images/cozy-gift-box.jpg"
+}
