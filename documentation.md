@@ -8,8 +8,8 @@
 
 A handcrafted candle business website for **The Cozy Glow Candles** — built as a static site with a visual CMS for non-technical content management.
 
-**Live URL:** https://6a5e082956833437ea933200--effortless-twilight-0f442e.netlify.app  
-**Admin Panel:** https://6a5e082956833437ea933200--effortless-twilight-0f442e.netlify.app/admin/  
+**Live URL:** https://cozy-glow-website.vercel.app  
+**Admin Panel:** https://cozy-glow-website.vercel.app/admin/  
 **GitHub Repo:** https://github.com/Dragula003/cozy-glow-website
 
 ---
@@ -19,9 +19,9 @@ A handcrafted candle business website for **The Cozy Glow Candles** — built as
 | Layer | Tool | Purpose |
 |-------|------|---------|
 | Frontend | HTML, CSS, JavaScript | Static site with animations |
-| Hosting | Netlify (free tier) | Auto-deploy from GitHub |
+| Hosting | Vercel (free tier) | Auto-deploy from GitHub |
 | CMS | Decap CMS (formerly Netlify CMS) | Visual product/page editing |
-| Auth | Netlify Identity | Magic link login for admin |
+| Auth | Vercel Authentication | Protects admin panel |
 | Git Gateway | Netlify Git Gateway | CMS writes to GitHub repo |
 | Fonts | Google Fonts (Playfair Display + Jost) | Typography |
 | Analytics | — | Not yet configured |
@@ -198,13 +198,12 @@ cozy-glow-website/
 - **Initial release** — full website created from scratch
 - **6 products** added with SVG placeholder images
 - **Decap CMS** configured for visual content management
-- **Netlify Identity** + Git Gateway enabled
+- **Vercel deployment** — migrated from Netlify (account suspended)
 - **Security hardening** — CSP, HSTS, XSS prevention, input sanitization
 - **Admin panel** hidden behind subtle gear icon
 - **robots.txt** added to block crawlers from admin/data paths
 - **External links** updated with rel="noopener noreferrer"
 - **Hero and About images** added as SVG illustrations
-- **Netlify Forms** configured for newsletter signup
 - **Documentation** created (this file)
 
 ---
