@@ -152,20 +152,43 @@ cozy-glow-website/
 
 ## Security Features
 
-| Feature | Status |
-|---------|--------|
-| X-Frame-Options: DENY | ✅ |
-| X-XSS-Protection | ✅ |
-| Strict-Transport-Security (HSTS) | ✅ |
-| Referrer-Policy | ✅ |
-| Content-Security-Policy | ✅ (meta tag) |
-| Permissions-Policy | ✅ |
-| XSS prevention (input sanitization) | ✅ |
-| External links: rel="noopener" | ✅ |
-| robots.txt (blocks /admin/) | ✅ |
-| Admin panel hidden (subtle gear icon) | ✅ |
-| .git directory blocked | ✅ |
-| config.yml blocked | ✅ |
+### Write Protection (Only You Can Modify)
+| Protection | How It Works |
+|------------|--------------|
+| **Netlify Identity** | Admin login requires magic link to your email |
+| **Git Gateway** | CMS writes go through authenticated Netlify → GitHub API |
+| **GitHub Auth** | Only your GitHub token can push code |
+| **No public write API** | No CMS endpoint exposed without Identity login |
+
+### Read Protection
+| Feature | Status | Notes |
+|---------|--------|-------|
+| X-Frame-Options: DENY | ✅ | Prevents clickjacking |
+| X-XSS-Protection | ✅ | Browser XSS filter |
+| Strict-Transport-Security (HSTS) | ✅ | Forces HTTPS for 1 year |
+| Referrer-Policy | ✅ | Limits referrer data |
+| Content-Security-Policy | ✅ | Restricts resource loading |
+| Permissions-Policy | ✅ | Blocks camera/mic/geo |
+| XSS prevention (input sanitization) | ✅ | All product data escaped |
+| External links: rel="noopener" | ✅ | Prevents tab-napping |
+| .git directory blocked | ✅ | Returns 404 |
+| Documentation blocked | ✅ | Returns 404 |
+| _headers file blocked | ✅ | Returns 404 |
+| Admin panel hidden | ✅ | Subtle gear icon only |
+| robots.txt | ✅ | Blocks crawlers from /admin/ |
+| config.yml readable | ⚠️ | Required for CMS to function (no secrets exposed) |
+
+### What Others CANNOT Do Without Your Auth
+- ❌ Edit products
+- ❌ Upload images
+- ❌ Change site settings
+- ❌ Push code to GitHub
+- ❌ Access Netlify dashboard
+
+### What Others CAN Do (Public)
+- ✅ View the website
+- ✅ Read product data (JSON)
+- ✅ Submit newsletter form (Netlify Forms)
 
 ---
 
