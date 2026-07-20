@@ -14,8 +14,7 @@
     {
       "source": "/admin/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate" }
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
     },
     {
@@ -30,12 +29,5 @@
         { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/admin/config.yml", "destination": "/404" },
-    { "source": "/.git/(.*)", "destination": "/404" },
-    { "source": "/build.sh", "destination": "/404" },
-    { "source": "/documentation.md", "destination": "/404" },
-    { "source": "/_headers", "destination": "/404" }
   ]
 }
