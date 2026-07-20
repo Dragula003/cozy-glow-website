@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#F0EAF5"/>
+  <rect x="200" y="180" width="200" height="260" rx="20" fill="#FDF9F4" stroke="#C4A882" stroke-width="2"/>
+  <rect x="200" y="180" width="200" height="60" rx="12" fill="#F0E6D8"/>
+  <line x1="300" y1="150" x2="300" y2="185" stroke="#5C4A3A" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="300" cy="135" rx="10" ry="16" fill="#F5C060" opacity="0.9"/>
+  <ellipse cx="300" cy="138" rx="6" ry="10" fill="#FBAD1D"/>
+  <text x="300" y="320" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#8A6E50" letter-spacing="3">THE COZY GLOW</text>
+  <text x="300" y="345" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#7A77DD" letter-spacing="2">LAVENDER DREAMS</text>
+  <text x="300" y="520" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#8A6E50">Handcrafted Soy Candle</text>
+</svg>

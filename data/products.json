@@ -11,7 +11,7 @@
   "size": "Single tablet",
   "color": "#F5EEE8",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/botanical-sachet.jpg"
+  "image": "/images/botanical-sachet.svg"
 }
 ,
 {
@@ -26,7 +26,7 @@
   "size": "200g · 8oz jar",
   "color": "#FAEEE0",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/cinnamon-spice.jpg"
+  "image": "/images/cinnamon-spice.svg"
 }
 ,
 {
@@ -41,7 +41,7 @@
   "size": "Gift box set",
   "color": "#F5EEE8",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/cozy-gift-box.jpg"
+  "image": "/images/cozy-gift-box.svg"
 }
 ,
 {
@@ -56,7 +56,7 @@
   "size": "200g · 8oz jar",
   "color": "#EBF0E8",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/eucalyptus-mint.jpg"
+  "image": "/images/eucalyptus-mint.svg"
 }
 ,
 {
@@ -71,7 +71,7 @@
   "size": "200g · 8oz jar",
   "color": "#F0EAF5",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/lavender-dreams.jpg"
+  "image": "/images/lavender-dreams.svg"
 }
 ,
 {
@@ -86,6 +86,6 @@
   "size": "200g · 8oz jar",
   "color": "#F3E8DC",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/vanilla-amber.jpg"
+  "image": "/images/vanilla-amber.svg"
 }
 ]
