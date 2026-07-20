@@ -56,6 +56,21 @@
   status = 404
 
 [[redirects]]
+  from = "/build.sh"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/documentation.md"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/_headers"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
   from = "/inviteConfirmation"
   to = "/admin/"
   status = 200

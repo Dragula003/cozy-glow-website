@@ -9,6 +9,11 @@
 
 /admin/*
   X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, no-cache, must-revalidate
+
+/admin/config.yml
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, no-cache, must-revalidate
 
 /data/*
   Cache-Control: public, max-age=3600
