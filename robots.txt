@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /data/
+Disallow: /.netlify/
+
+Sitemap: https://thecozyglowcandles.com/sitemap.xml

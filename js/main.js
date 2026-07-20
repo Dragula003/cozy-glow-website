@@ -2,8 +2,20 @@ const STORAGE_KEY = 'cozyGlowCatalogue_v1';
 let allProducts = [];
 let activeFilter = 'all';
 
+function escapeHTML(str) {
+  if (!str) return '';
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' };
+  return String(str).replace(/[&<>"']/g, c => map[c]);
+}
+
+function sanitizeURL(url) {
+  if (!url) return '#';
+  const trimmed = url.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('/')) return trimmed;
+  return '#';
+}
+
 async function loadProducts() {
-  // Try to load from CMS data file first, fall back to localStorage
   try {
     const resp = await fetch('/data/products.json');
     if (resp.ok) {
@@ -32,28 +44,40 @@ function renderProducts() {
     return;
   }
 
-  grid.innerHTML = inStock.map((p, i) => `
+  grid.innerHTML = inStock.map((p, i) => {
+    const name = escapeHTML(p.name);
+    const scent = escapeHTML(p.scent);
+    const burn = escapeHTML(p.burn);
+    const size = escapeHTML(p.size);
+    const color = escapeHTML(p.color || '#F3E8DC');
+    const tag = escapeHTML(p.tag);
+    const link = sanitizeURL(p.link || 'https://www.instagram.com/thecozyglowcandles/');
+    const image = p.image ? escapeHTML(p.image) : '';
+    const alt = escapeHTML(p.name || 'Product');
+    const price = (p.price || 0).toLocaleString('en-IN');
+
+    return `
     <div class="product-card" style="transition-delay:${i*60}ms">
-      <div class="product-img" style="background:${p.color||'#F3E8DC'}">
-        ${p.image ? `<img src="${p.image}" alt="${p.name}">` : `<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:90px;opacity:0.6">
-          ${p.category==='sachet' ? sachetSVG() : p.category==='gift' ? giftSVG() : candleSVG(p.color)}
+      <div class="product-img" style="background:${color}">
+        ${image ? `<img src="${image}" alt="${alt}" loading="lazy">` : `<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:90px;opacity:0.6">
+          ${p.category==='sachet' ? sachetSVG() : p.category==='gift' ? giftSVG() : candleSVG(color)}
         </svg>`}
-        ${p.tag ? `<span class="product-tag tag-${p.tag}">${tagLabel(p.tag)}</span>` : ''}
+        ${tag ? `<span class="product-tag tag-${tag}">${tagLabel(tag)}</span>` : ''}
       </div>
       <div class="product-info">
-        <h3 class="product-name">${p.name}</h3>
-        ${p.scent ? `<p class="product-scent">${p.scent}</p>` : ''}
+        <h3 class="product-name">${name}</h3>
+        ${scent ? `<p class="product-scent">${scent}</p>` : ''}
         <div class="product-meta-row">
-          ${p.burn ? `<span>🕯️ ${p.burn}</span>` : ''}
-          ${p.size ? `<span>📦 ${p.size}</span>` : ''}
+          ${burn ? `<span>🕯️ ${burn}</span>` : ''}
+          ${size ? `<span>📦 ${size}</span>` : ''}
         </div>
         <div class="product-footer">
-          <span class="product-price">₹${(p.price||0).toLocaleString('en-IN')}</span>
-          <a href="${p.link||'https://www.instagram.com/thecozyglowcandles/'}" target="_blank" class="product-btn">Shop Now</a>
+          <span class="product-price">₹${price}</span>
+          <a href="${link}" target="_blank" rel="noopener noreferrer" class="product-btn">Shop Now</a>
         </div>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   requestAnimationFrame(() => {
     document.querySelectorAll('.product-card').forEach(c => c.classList.add('visible'));

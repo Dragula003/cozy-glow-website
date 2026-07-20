@@ -134,8 +134,8 @@ footer{background:var(--charcoal);color:rgba(250,246,240,0.65);padding:4rem 2rem
 .footer-col a{text-decoration:none;font-size:0.85rem;color:rgba(250,246,240,0.55);transition:color 0.2s}
 .footer-col a:hover{color:var(--cream)}
 .footer-bottom{max-width:1100px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(196,168,130,0.2);display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;flex-wrap:wrap;gap:1rem}
-.admin-fab{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--charcoal);color:var(--cream);text-decoration:none;padding:0.7rem 1.25rem;border-radius:24px;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;z-index:200;border:1px solid rgba(255,255,255,0.1);transition:background 0.2s}
-.admin-fab:hover{background:var(--taupe-dark)}
+.admin-fab{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--charcoal);color:var(--cream);text-decoration:none;padding:0.6rem;border-radius:50%;font-size:0.85rem;z-index:200;border:1px solid rgba(255,255,255,0.1);transition:background 0.2s,opacity 0.3s;opacity:0.3;width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.admin-fab:hover{background:var(--taupe-dark);opacity:1}
 
 @media(max-width:900px){
   #hero{grid-template-columns:1fr;min-height:auto}
