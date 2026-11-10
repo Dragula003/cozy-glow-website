@@ -163,3 +163,4 @@ footer{background:var(--charcoal);color:rgba(250,246,240,0.65);padding:4rem 2rem
 .fragrance-chip:hover{background:rgba(196,168,130,0.12);border-color:var(--taupe)}
 .fragrance-note{margin-top:1.4rem;font-size:0.78rem;color:rgba(250,246,240,0.5);font-style:italic}
 .price-on-request{font-size:0.88rem;color:var(--taupe-dark);font-weight:400;letter-spacing:0.04em}
+.discount-badge{position:absolute;top:1rem;right:1rem;background:var(--green);color:#fff;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;padding:0.32rem 0.7rem;border-radius:12px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,0.18)}

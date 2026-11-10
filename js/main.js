@@ -65,9 +65,12 @@ function renderProducts() {
     const link = sanitizeURL(p.link || 'https://www.instagram.com/thecozyglowcandles/');
     const image = p.image ? escapeHTML(p.image) : '';
     const alt = escapeHTML(p.name || 'Product');
-    const price = (p.price === null || p.price === undefined || p.price === '')
-      ? 'Price on Request'
-      : '₹' + Number(p.price).toLocaleString('en-IN');
+    const hasPrice = !(p.price === null || p.price === undefined || p.price === '');
+    const priceNum = hasPrice ? Number(p.price) : null;
+    const mrpNum = (hasPrice && p.mrp != null && p.mrp !== '' && Number(p.mrp) > priceNum) ? Number(p.mrp) : null;
+    const pctOff = mrpNum ? Math.round((mrpNum - priceNum) / mrpNum * 100) : 0;
+    const showBadge = pctOff > 0;
+    const price = hasPrice ? '₹' + priceNum.toLocaleString('en-IN') : 'Price on Request';
 
     return `
     <div class="product-card" style="transition-delay:${i*60}ms">
@@ -76,6 +79,7 @@ function renderProducts() {
           ${p.category==='sachet' ? sachetSVG() : p.category==='gift' ? giftSVG() : candleSVG(color)}
         </svg>`}
         ${tag ? `<span class="product-tag tag-${tag}">${tagLabel(tag)}</span>` : ''}
+        ${showBadge ? `<span class="discount-badge">${pctOff}% OFF</span>` : ''}
       </div>
       <div class="product-info">
         <h3 class="product-name">${name}</h3>
@@ -85,7 +89,7 @@ function renderProducts() {
           ${size ? `<span>📦 ${size}</span>` : ''}
         </div>
         <div class="product-footer">
-          <span class="product-price${price === 'Price on Request' ? ' price-on-request' : ''}">${price}</span>
+          <span class="product-price${!hasPrice ? ' price-on-request' : ''}">${mrpNum && showBadge ? `<s class="product-price-mrp" title="Original price">₹${mrpNum.toLocaleString('en-IN')}</s>` : ''}${price}</span>
           <a href="${link}" target="_blank" rel="noopener noreferrer" class="product-btn">Shop Now</a>
         </div>
       </div>

@@ -1,12 +1,527 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Site — The Cozy Glow</title>
-  <meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Inventory Manager · The Cozy Glow</title>
+<style>
+  :root{
+    --cream:#FAF6F0;--warm-white:#FDF9F4;--taupe:#C4A882;--taupe-dark:#8A6E50;
+    --charcoal:#2C2520;--mid:#6B5B4E;--green:#5E7C56;--red:#B4523F;--line:#E8DFD2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--charcoal);
+    font-family:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px}
+  a{color:var(--taupe-dark)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 80px}
+
+  header{background:var(--charcoal);color:var(--cream);padding:22px 0;margin-bottom:26px}
+  .head-in{max-width:1120px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{font-family:'Playfair Display',Georgia,serif;font-size:1.25rem;letter-spacing:.02em}
+  .brand span{color:var(--taupe)}
+  .head-sub{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,240,.55);margin-top:3px}
+  .head-right{display:flex;gap:10px;align-items:center}
+  .hlink{color:var(--cream);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(196,168,130,.4);padding:.5rem .9rem;border-radius:2px;background:transparent;cursor:pointer;font-family:inherit}
+  .hlink:hover{border-color:var(--taupe);color:var(--taupe)}
+
+  .card{background:var(--warm-white);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:20px}
+  .card h2{margin:0 0 6px;font-size:1.02rem;font-weight:600}
+  .card p{margin:0 0 12px;color:var(--mid);font-size:.88rem;line-height:1.6}
+
+  .setup{border:1px solid var(--taupe);background:#FDF6EA}
+  .steps{background:#fff;border:1px dashed var(--taupe);border-radius:6px;padding:14px 16px;margin-top:12px;font-size:.86rem;color:var(--mid);line-height:1.75;display:none}
+  .steps.show{display:block}
+  .steps ol{margin:.4rem 0 .6rem;padding-left:1.2rem}
+  .steps li{margin-bottom:.35rem}
+  code{background:#F0E7DA;border:1px solid var(--line);border-radius:3px;padding:1px 6px;font-size:.84em;font-family:ui-monospace,Menlo,monospace}
+  .btn{display:inline-block;border:1px solid var(--line);background:#fff;color:var(--charcoal);padding:.55rem 1.1rem;border-radius:3px;font-size:.84rem;letter-spacing:.04em;cursor:pointer;font-family:inherit;transition:all .15s}
+  .btn:hover{border-color:var(--taupe);background:var(--cream)}
+  .btn-primary{background:var(--charcoal);border-color:var(--charcoal);color:var(--cream);font-weight:600}
+  .btn-primary:hover{background:#3d342c}
+  .btn-green{background:var(--green);border-color:var(--green);color:#fff;font-weight:600}
+  .btn-green:hover{filter:brightness(1.07)}
+  .btn-danger{color:var(--red)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  input,select{font-family:inherit;font-size:.92rem;padding:.5rem .6rem;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--charcoal)}
+  input:focus,select:focus{outline:2px solid rgba(196,168,130,.5);border-color:var(--taupe)}
+  input:disabled{background:#F4EFE8;color:var(--mid)}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  label.mini{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:4px}
+
+  .status{font-size:.84rem;padding:.5rem .8rem;border-radius:3px;border:1px solid var(--line);background:#fff}
+  .status.dirty{background:#FFF6E5;border-color:#E9C97A;color:#7A5B12}
+  .status.ok{background:#EEF5EC;border-color:#B9D2B2;color:#3F5C39}
+  .status.err{background:#FBEEEB;border-color:#E3B7AE;color:#8E3A2A}
+
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .toolbar input[type=search]{min-width:210px}
+  .grow{flex:1}
+
+  .tbl-scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;background:var(--warm-white);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  th{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-align:left;padding:12px 10px;background:#F4EDE3;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr.dirty-row{background:#FFFBF0}
+  tr.hidden{display:none}
+  .thumb{width:54px;height:54px;border-radius:5px;object-fit:cover;border:1px solid var(--line);background:var(--cream);display:block}
+  .pname{width:100%;min-width:170px;font-weight:500}
+  .num{width:96px}
+  .pct{width:70px}
+  .cat{width:118px}
+  .strike{text-decoration:line-through;color:var(--mid);font-weight:400;font-size:.85rem;margin-right:6px}
+  .off-badge{display:inline-block;background:var(--green);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:10px;vertical-align:middle}
+  .onreq{font-size:.78rem;color:var(--mid)}
+  .reqbox{text-align:center}
+  .empty{padding:30px;text-align:center;color:var(--mid)}
+  .hint{font-size:.78rem;color:var(--mid);margin-top:8px}
+
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+    background:var(--charcoal);color:var(--cream);padding:.8rem 1.3rem;border-radius:4px;
+    font-size:.9rem;opacity:0;pointer-events:none;transition:all .3s;max-width:92vw;text-align:center;z-index:9}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #toast.bad{background:var(--red)}
+  footer{color:var(--mid);font-size:.78rem;text-align:center;margin-top:30px;line-height:1.7}
+  @media(max-width:820px){ table{min-width:920px} }
+</style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<header>
+  <div class="head-in">
+    <div>
+      <div class="brand">The Cozy Glow <span>· Inventory Manager</span></div>
+      <div class="head-sub">Update prices &amp; discounts — publish to your live site</div>
+    </div>
+    <div class="head-right">
+      <a class="hlink" href="/" target="_blank">View live site ↗</a>
+      <button class="hlink" onclick="forgetKey()">Forget key</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ONE-TIME SETUP -->
+  <div class="card setup" id="setup-card" style="display:none">
+    <h2>One-time setup: paste your publish key</h2>
+    <p>The key lets this page save changes to your website. It is stored <b>only in this browser</b> and sent only to GitHub — nowhere else.</p>
+    <div class="row" style="align-items:flex-end">
+      <div>
+        <label class="mini" for="key-input">Publish key (starts with <code>ghp_</code>)</label>
+        <input id="key-input" type="password" placeholder="Paste your GitHub key" style="min-width:340px" autocomplete="off">
+      </div>
+      <button class="btn btn-primary" onclick="saveKey()">Save key</button>
+      <button class="btn" onclick="document.getElementById('steps').classList.toggle('show')">How do I get a key? (2 min)</button>
+    </div>
+    <div class="steps" id="steps">
+      <b>Get your free key from GitHub:</b>
+      <ol>
+        <li>Open <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=Cozy+Glow+Inventory" target="_blank">github.com/settings/tokens/new…</a> while logged in as <code>Dragula003</code></li>
+        <li>Leave the boxes as they are (access already set to <code>public_repo</code>) and pick an expiration you like</li>
+        <li>Click <b>Generate token</b>, then <b>copy</b> the <code>ghp_…</code> string — it is shown only once</li>
+        <li>Paste it above and press <b>Save key</b></li>
+      </ol>
+      Keep it secret — anyone with this key can change your website files.
+    </div>
+  </div>
+
+  <!-- BULK TOOLS -->
+  <div class="card">
+    <h2>Quick tools</h2>
+    <p>Apply a discount to <b>everything at once</b>, or start fresh with no discounts.</p>
+    <div class="row">
+      <div>
+        <label class="mini">Discount for all products</label>
+        <div class="row">
+          <input type="number" id="bulk-pct" min="0" max="95" placeholder="25" style="width:90px">
+          <span style="margin-left:-4px">%</span>
+          <button class="btn" onclick="applyBulk()">Apply to all</button>
+        </div>
+      </div>
+      <div style="border-left:1px solid var(--line);padding-left:16px">
+        <label class="mini">Discounts</label>
+        <button class="btn btn-danger" onclick="clearAllDiscounts()">Clear all discounts</button>
+      </div>
+    </div>
+    <div class="hint">Discounts are always calculated from the <b>original price</b>, so applying one twice never lowers the price twice.</div>
+  </div>
+
+  <!-- STATUS + SAVE -->
+  <div class="card" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <span class="status" id="status">Loading products…</span>
+    <span class="grow"></span>
+    <button class="btn" onclick="loadProducts()">↻ Reload</button>
+    <button class="btn" onclick="discardAll()">Discard my changes</button>
+    <button class="btn btn-green" id="publish-btn" onclick="publish()">💾 Save &amp; Publish</button>
+  </div>
+
+  <!-- SEARCH / FILTER -->
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Search products…" oninput="applyFilters()">
+    <select id="cat-filter" onchange="applyFilters()">
+      <option value="">All types</option>
+      <option value="urli">Urlis</option>
+      <option value="wooden">Wooden</option>
+      <option value="candle">Candles</option>
+      <option value="sachet">Wax Sachets</option>
+    </select>
+    <span class="grow"></span>
+    <span class="hint" style="margin:0" id="count-label"></span>
+  </div>
+
+  <!-- TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product name</th>
+        <th>Type</th>
+        <th>Original price</th>
+        <th>Discount</th>
+        <th>Customer pays</th>
+        <th style="text-align:center">Price on request</th>
+      </tr>
+    </thead>
+    <tbody id="rows"><tr><td colspan="7" class="empty">Loading…</td></tr></tbody>
+  </table>
+
+  <div class="hint" style="text-align:center;margin-top:14px">
+    Changes go live in about a minute (your host rebuilds the site automatically).<br>
+    “Price on request” shows <i>Price on Request</i> instead of a number — used for Ceramic Jar, Christmas Tree and Sea Shell Candle.
+  </div>
+
+  <footer>The Cozy Glow · Inventory Manager · changes are saved to GitHub and published automatically</footer>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ================= config ================= */
+const OWNER = 'Dragula003', REPO = 'cozy-glow-website', BRANCH = 'main';
+const KEY_STORE = 'cozyGlowPublishKey';
+const API = 'https://api.github.com';
+const CATEGORIES = ['urli','wooden','candle','sachet'];
+const CAT_LABEL = {urli:'Urlis',wooden:'Wooden',candle:'Candles',sachet:'Wax Sachets'};
+
+let products = [];   // {file, data, snapshot}   snapshot = JSON.stringify of loaded data
+let key = localStorage.getItem(KEY_STORE) || '';
+
+/* ================= helpers ================= */
+const $ = id => document.getElementById(id);
+const showToast = (msg, bad) => {
+  const t = $('toast'); t.textContent = msg; t.classList.toggle('bad', !!bad);
+  t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), bad ? 7000 : 3500);
+};
+const num = v => (v === null || v === undefined || v === '' || isNaN(v)) ? null : Number(v);
+const inr = n => '₹' + Number(n).toLocaleString('en-IN');
+const status = (msg, kind) => { const s = $('status'); s.textContent = msg; s.className = 'status' + (kind ? ' ' + kind : ''); };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clampPct = p => Math.max(0, Math.min(95, p || 0));
+
+function gh(path, opts = {}) {
+  const headers = {'Accept':'application/vnd.github+json'};
+  if (key) headers['Authorization'] = 'Bearer ' + key;
+  if (opts.body) headers['Content-Type'] = 'application/json';
+  return fetch(API + path, {...opts, headers});
+}
+async function ghJSON(path, opts = {}) {
+  const r = await gh(path, opts);
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    let msg = j.message || ('HTTP ' + r.status);
+    if (r.status === 401) msg = 'Your publish key was rejected — get a new one (click “How do I get a key?”) and paste it again.';
+    else if (r.status === 403) msg = 'GitHub refused: ' + msg;
+    else if (r.status === 422) msg = 'GitHub reported a conflict — press Reload and try again.';
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return j;
+}
+
+/* ================= key ================= */
+function saveKey(){
+  const v = $('key-input').value.trim();
+  if (!v) { showToast('Paste a key first', true); return; }
+  key = v; localStorage.setItem(KEY_STORE, v);
+  renderSetup();
+  showToast('Key saved — you can publish now');
+  loadProducts();
+}
+function forgetKey(){
+  key = ''; localStorage.removeItem(KEY_STORE);
+  $('key-input').value = '';
+  renderSetup();
+  showToast('Key forgotten on this browser');
+}
+function renderSetup(){ $('setup-card').style.display = key ? 'none' : ''; }
+
+/* ================= load ================= */
+async function loadProducts(){
+  renderSetup();
+  status('Loading products…');
+  try {
+    const list = await ghJSON(`/repos/${OWNER}/${REPO}/contents/data/products?ref=${BRANCH}`);
+    const files = list.filter(f => f.name.endsWith('.json')).sort((a,b) => a.name.localeCompare(b.name));
+    const loaded = await Promise.all(files.map(async f => {
+      const h = {}; if (key) h['Authorization'] = 'Bearer ' + key;
+      const r = await fetch(f.download_url + '?t=' + Date.now(), {headers: h});
+      if (!r.ok) throw new Error('Could not read ' + f.name);
+      const data = tidy(await r.json());
+      return {file: f.name, data, snapshot: JSON.stringify(data)};
+    }));
+    products = loaded;
+    renderRows();
+    updateStatus();
+    status(`${products.length} products loaded`, 'ok');
+  } catch (e) {
+    status('Could not load: ' + e.message, 'err');
+    showToast(e.message, true);
+  }
+}
+
+/* ================= model helpers ================= */
+function tidy(d){
+  const out = {...d};
+  if (num(out.mrp) == null) delete out.mrp;
+  else if (num(out.price) != null && Number(out.mrp) === Number(out.price)) delete out.mrp;
+  return out;
+}
+const isDirty = p => JSON.stringify(tidy(p.data)) !== p.snapshot;
+const dirtyCount = () => products.filter(isDirty).length;
+const baseOf = d => num(d.mrp) ?? num(d.price);                  // original price (never compounded)
+function discountOf(d){
+  const base = num(d.mrp), price = num(d.price);
+  if (base == null || price == null || base <= 0 || price >= base) return 0;
+  return Math.round((base - price) / base * 100);
+}
+function updateStatus(){
+  const n = dirtyCount();
+  $('publish-btn').disabled = (n === 0);
+  if (n === 0) status('All changes published ✓', 'ok');
+  else status(n + (n === 1 ? ' unsaved change' : ' unsaved changes'), 'dirty');
+}
+
+/* ================= table ================= */
+function rowHTML(p, i){
+  const d = p.data;
+  const onReq = d.price === null;
+  const base = baseOf(d);
+  const disc = discountOf(d);
+  const sale = num(d.price);
+  return `
+    <tr data-i="${i}" class="${isDirty(p) ? 'dirty-row' : ''}" data-name="${esc((d.name||'').toLowerCase())}" data-cat="${esc(d.category||'')}">
+      <td><img class="thumb" src="${esc(d.image || '')}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"></td>
+      <td><input class="pname" data-f="name" value="${esc(d.name || '')}"></td>
+      <td><select class="cat" data-f="category">${CATEGORIES.map(c =>
+          `<option value="${c}" ${d.category === c ? 'selected' : ''}>${CAT_LABEL[c]}</option>`).join('')}</select></td>
+      <td><input class="num" type="number" min="0" step="1" data-f="mrp" value="${base ?? ''}" ${onReq ? 'disabled' : ''} placeholder="₹ original"></td>
+      <td><input class="pct" type="number" min="0" max="95" step="1" data-f="discount" value="${onReq ? '' : disc}" ${onReq ? 'disabled' : ''}> <span style="color:var(--mid)">%</span></td>
+      <td class="charge" data-cell="charge">
+        ${chargeHTML(d)}
+      </td>
+      <td class="reqbox"><input type="checkbox" data-f="onreq" ${onReq ? 'checked' : ''} title="Price on request"></td>
+    </tr>`;
+}
+function metaHTML(d){
+  if (d.price === null) return '<small style="color:var(--mid)">shows “Price on Request”</small>';
+  const base = baseOf(d), disc = discountOf(d);
+  if (disc > 0 && base) return `<small><span class="strike">${inr(base)}</span><span class="off-badge">${disc}% OFF</span></small>`;
+  return '<small style="color:var(--mid)">&nbsp;</small>';
+}
+function chargeHTML(d){
+  const onReq = d.price === null;
+  const val = onReq ? '' : (num(d.price) ?? baseOf(d) ?? '');
+  return `<input class="num" type="number" min="0" step="1" data-f="price" value="${val}" ${onReq ? 'disabled' : ''}>
+          <span data-sale-meta style="display:block">${metaHTML(d)}</span>`;
+}
+function renderRows(){
+  const tb = $('rows');
+  if (!products.length){ tb.innerHTML = '<tr><td colspan="7" class="empty">No products found</td></tr>'; $('count-label').textContent = ''; return; }
+  tb.innerHTML = products.map(rowHTML).join('');
+  applyFilters();
+}
+function refreshRowVisuals(tr, p, activeField){
+  // update dependent cells WITHOUT re-rendering inputs (keeps typing uninterrupted)
+  tr.classList.toggle('dirty-row', isDirty(p));
+  const d = p.data, onReq = d.price === null;
+  const mrpIn = tr.querySelector('[data-f="mrp"]'), pctIn = tr.querySelector('[data-f="discount"]'),
+        chk = tr.querySelector('[data-f="onreq"]'), priceIn = tr.querySelector('[data-f="price"]'),
+        meta = tr.querySelector('[data-sale-meta]');
+  if (mrpIn) { if (activeField !== 'mrp') mrpIn.value = baseOf(d) ?? ''; mrpIn.disabled = onReq; }
+  if (pctIn) { if (activeField !== 'discount') pctIn.value = onReq ? '' : discountOf(d); pctIn.disabled = onReq; }
+  if (priceIn) { if (activeField !== 'price') priceIn.value = onReq ? '' : (num(d.price) ?? baseOf(d) ?? ''); priceIn.disabled = onReq; }
+  if (meta) meta.innerHTML = metaHTML(d);
+  if (chk) chk.checked = onReq;
+  updateStatus();
+  applyFilters();
+}
+
+/* editing (delegated) */
+$('rows').addEventListener('input', e => {
+  const el = e.target, tr = el.closest('tr'); if (!tr || tr.dataset.i === undefined) return;
+  const p = products[+tr.dataset.i]; if (!p) return;
+  const f = el.dataset.f, d = p.data;
+
+  if (f === 'name') { d.name = el.value; tr.dataset.name = el.value.toLowerCase(); tr.classList.toggle('dirty-row', isDirty(p)); updateStatus(); return; }
+  if (f === 'category') { d.category = el.value; tr.dataset.cat = el.value; tr.classList.toggle('dirty-row', isDirty(p)); updateStatus(); applyFilters(); return; }
+
+  if (f === 'mrp') {
+    const v = num(el.value);
+    const disc = discountOf(d);              // keep the current discount % when original changes
+    if (v == null) { d.mrp = null; }         // cleared original → show plain price, no discount
+    else {
+      d.mrp = v;
+      d.price = disc > 0 ? Math.round(v * (1 - disc / 100)) : v;
+    }
+    refreshRowVisuals(tr, p, 'mrp');
+  }
+  else if (f === 'discount') {
+    const base = baseOf(d);
+    if (base == null) { el.value = ''; return; }
+    const pct = clampPct(num(el.value));
+    if (d.mrp == null) d.mrp = base;
+    d.price = pct === 0 ? Number(d.mrp) : Math.round(Number(d.mrp) * (1 - pct / 100));
+    refreshRowVisuals(tr, p, 'discount');
+  }
+  else if (f === 'price') {
+    const v = num(el.value);
+    if (v == null) return;                   // field mid-edit (empty) — keep the previous value
+    const base = num(d.mrp);
+    if (base == null) {
+      const prev = num(d.price);
+      d.price = v;
+      if (prev != null && v < prev) d.mrp = prev;   // lowered → old price becomes the struck original
+    } else {
+      d.price = v;
+      d.mrp = (v >= base) ? v : base;               // raised to/above original → discount removed
+    }
+    refreshRowVisuals(tr, p, 'price');
+  }
+  else if (f === 'onreq') {
+    if (el.checked) {
+      if (d.price != null) { p._lastSale = d.price; if (d.mrp == null) d.mrp = d.price; d.price = null; }
+    } else {
+      const base = baseOf(d);
+      d.price = p._lastSale ?? base;
+      if (d.price == null) { showToast('Enter a price for this product', true); }
+      delete p._lastSale;
+    }
+    refreshRowVisuals(tr, p, 'onreq');
+    if (f === 'onreq') { const c = tr.querySelector('[data-f="onreq"]'); if (c) c.focus(); }
+  }
+});
+
+/* ================= filters ================= */
+function applyFilters(){
+  const q = ($('search').value || '').toLowerCase().trim();
+  const cat = $('cat-filter').value;
+  let shown = 0;
+  $('rows').querySelectorAll('tr[data-i]').forEach(tr => {
+    const ok = (!q || tr.dataset.name.includes(q)) && (!cat || tr.dataset.cat === cat);
+    tr.classList.toggle('hidden', !ok);
+    if (ok) shown++;
+  });
+  $('count-label').textContent = `Showing ${shown} of ${products.length}`;
+}
+
+/* ================= bulk ================= */
+function applyBulk(){
+  const raw = $('bulk-pct').value;
+  if (raw === '') { showToast('Enter a discount % first', true); return; }
+  const pct = clampPct(num(raw));
+  if (!confirm(`Apply ${pct}% off to all ${products.length} products?\n(Original prices stay unchanged.)`)) return;
+  let n = 0;
+  products.forEach(p => {
+    const d = p.data;
+    if (d.price === null) return;                 // leave "price on request" products alone
+    const base = baseOf(d);
+    if (base == null) return;
+    d.mrp = base;
+    d.price = pct === 0 ? base : Math.round(base * (1 - pct / 100));
+    n++;
+  });
+  renderRows(); updateStatus();
+  showToast(`${n} products set to ${pct}% off — press Save & Publish`);
+}
+function clearAllDiscounts(){
+  if (!confirm('Remove all discounts? Every product goes back to its original price.')) return;
+  let n = 0;
+  products.forEach(p => {
+    const d = p.data;
+    if (d.price === null) return;
+    const base = baseOf(d);
+    if (base == null) return;
+    d.mrp = base; d.price = base; n++;
+  });
+  renderRows(); updateStatus();
+  showToast(`${n} discounts cleared — press Save & Publish`);
+}
+function discardAll(){
+  if (!confirm('Discard your unsaved changes and reload the published prices?')) return;
+  loadProducts();
+}
+
+/* ================= publish ================= */
+function serialize(d){
+  return JSON.stringify(tidy(d), null, 2) + '\n';
+}
+
+function buildFiles(){
+  const files = [];
+  // combined data/products.json (what the live site loads) — same order as build.sh
+  const combined = '[' + products.map(p => serialize(p.data)).join(',') + ']';
+  products.forEach(p => {
+    if (!isDirty(p)) return;
+    files.push({path: 'data/products/' + p.file, content: serialize(p.data)});
+  });
+  files.push({path: 'data/products.json', content: combined + '\n'});
+  return files;
+}
+
+async function publishOnce(files){
+  const ref = await ghJSON(`/repos/${OWNER}/${REPO}/git/ref/heads/${BRANCH}`);
+  const head = ref.object.sha;
+  const commit = await ghJSON(`/repos/${OWNER}/${REPO}/git/commits/${head}`);
+  const blobs = await Promise.all(files.map(f =>
+    ghJSON(`/repos/${OWNER}/${REPO}/git/blobs`, {method:'POST', body: JSON.stringify({content: f.content, encoding:'utf-8'})})
+  ));
+  const tree = await ghJSON(`/repos/${OWNER}/${REPO}/git/trees`, {method:'POST',
+    body: JSON.stringify({base_tree: commit.tree.sha,
+      tree: files.map((f, i) => ({path: f.path, mode:'100644', type:'blob', sha: blobs[i].sha}))})});
+  const newCommit = await ghJSON(`/repos/${OWNER}/${REPO}/git/commits`, {method:'POST',
+    body: JSON.stringify({message: `Update product prices via Inventory Manager (${files.length - 1} product file(s))`,
+      tree: tree.sha, parents: [head]})});
+  await ghJSON(`/repos/${OWNER}/${REPO}/git/refs/heads/${BRANCH}`, {method:'PATCH',
+    body: JSON.stringify({sha: newCommit.sha})});
+  return newCommit.sha;
+}
+
+async function publish(){
+  const n = dirtyCount();
+  if (!n) { showToast('Nothing to publish'); return; }
+  if (!key) { renderSetup(); $('key-input').focus(); showToast('Save your publish key first', true); return; }
+  $('publish-btn').disabled = true;
+  status('Publishing…');
+  try {
+    const files = buildFiles();
+    let sha;
+    try { sha = await publishOnce(files); }
+    catch (e) { if (e.status === 409 || e.status === 422) { status('Retrying publish…'); sha = await publishOnce(files); } else throw e; }
+    products.forEach(p => { p.snapshot = JSON.stringify(tidy(p.data)); });
+    renderRows(); updateStatus();
+    status('Published ✓ — going live in about a minute', 'ok');
+    showToast('✅ Published! Your site updates in ~1 minute. (commit ' + sha.slice(0,7) + ')');
+  } catch (e) {
+    status('Publish failed', 'err');
+    showToast('❌ ' + e.message, true);
+    updateStatus();
+  }
+}
+
+window.addEventListener('beforeunload', e => { if (dirtyCount() > 0) { e.preventDefault(); e.returnValue = ''; } });
+
+loadProducts();
+</script>
 </body>
 </html>
