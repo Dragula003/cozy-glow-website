@@ -2,8 +2,8 @@ const STORAGE_KEY = 'cozyGlowCatalogue_v1';
 let allProducts = [];
 let activeFilter = 'all';
 
-// Products are listed by type: Urlis → Wooden → Candles → Wax Sachets → Gift Sets
-const CATEGORY_ORDER = ['urli', 'wooden', 'candle', 'sachet', 'gift'];
+// Products are listed by type: Urlis → Wooden → Candles → Wax Sachets
+const CATEGORY_ORDER = ['urli', 'wooden', 'candle', 'sachet'];
 function sortByType(list) {
   return list.slice().sort((a, b) => {
     const ia = CATEGORY_ORDER.indexOf(a.category);
@@ -48,7 +48,7 @@ async function loadProducts() {
 function renderProducts() {
   const grid = document.getElementById('product-grid');
   const filtered = activeFilter === 'all' ? allProducts : allProducts.filter(p => p.category === activeFilter);
-  const inStock = filtered.filter(p => (p.stock === undefined || p.stock > 0) || p.price);
+  const inStock = filtered.filter(p => (p.stock === undefined || p.stock > 0) || p.price != null);
 
   if (!inStock.length) {
     grid.innerHTML = '<div class="no-products"><p>No products in this category yet.</p></div>';
@@ -65,9 +65,9 @@ function renderProducts() {
     const link = sanitizeURL(p.link || 'https://www.instagram.com/thecozyglowcandles/');
     const image = p.image ? escapeHTML(p.image) : '';
     const alt = escapeHTML(p.name || 'Product');
-    const price = (p.price || 0).toLocaleString('en-IN');
-    const mrpVal = Number(p.mrp);
-    const mrp = mrpVal && mrpVal > (Number(p.price) || 0) ? mrpVal.toLocaleString('en-IN') : '';
+    const price = (p.price === null || p.price === undefined || p.price === '')
+      ? 'Price on Request'
+      : '₹' + Number(p.price).toLocaleString('en-IN');
 
     return `
     <div class="product-card" style="transition-delay:${i*60}ms">
@@ -85,7 +85,7 @@ function renderProducts() {
           ${size ? `<span>📦 ${size}</span>` : ''}
         </div>
         <div class="product-footer">
-          <span class="product-price">${mrp ? `<s class="product-price-mrp" title="MRP">₹${mrp}</s>` : ''}₹${price}</span>
+          <span class="product-price${price === 'Price on Request' ? ' price-on-request' : ''}">${price}</span>
           <a href="${link}" target="_blank" rel="noopener noreferrer" class="product-btn">Shop Now</a>
         </div>
       </div>

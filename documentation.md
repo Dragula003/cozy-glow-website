@@ -77,9 +77,9 @@ cozy-glow-website/
 |---------|-------------|
 | **Hero** | Full-screen split — text left, illustration right |
 | **Marquee** | Scrolling ticker with brand values |
-| **Products** | Dynamic grid with category filters (All/Candles/Sachets/Gifts) |
+| **Products** | Dynamic grid with category filters (All/Urlis/Wooden/Candles/Wax Sachets) |
 | **About** | Brand story with values list |
-| **Scents** | 4 fragrance families (Woody, Floral, Citrus, Gourmand) |
+| **Scents** | 4 fragrance families + the 11 catalogue fragrances + box-packaging note |
 | **Why Cozy Glow** | 4 quality pillars (Soy, Cotton, Phthalate-free, Small batch) |
 | **Process** | 4-step making process (Sourcing → Blending → Pouring → Curing) |
 | **Testimonials** | 3 customer reviews |
@@ -91,26 +91,52 @@ cozy-glow-website/
 
 ## Products (Current)
 
-Aligned with the printed catalogue (`The_Cozy_Glow_Catalogue_Retail_25% Discount - Bulk Prices.pptx`).
-`price` = festive price (flat 25% off), `mrp` = original retail price shown struck through.
+The full **29-product** line-up from the printed catalogue — `Documents/The_Cozy_Glow_Catalogue_Retailv2.pdf`.
+Product names and prices are reproduced **exactly as printed** in the PDF (retail prices, no discount display).
+`price: null` renders as **"Price on Request"** (Ceramic Jar, Christmas Tree, Sea Shell).
 
-| Product | Category | Tag | Price | MRP | Stock |
-|---------|----------|-----|-------|-----|-------|
-| Star Urli Candle (4.5") | Urli | Seasonal | ₹340 | ₹450 | 15 |
-| Rose Urli Candle (5.5") | Urli | — | ₹430 | ₹570 | 10 |
-| Lotus Pond Urli | Urli | Limited | ₹825 | ₹1,100 | 6 |
-| Wooden Boat Candle | Wooden | Bestseller | ₹495 | ₹660 | 12 |
-| Wooden Round Candle | Wooden | — | ₹675 | ₹900 | 8 |
-| Glass Jar Candle | Candle | New Arrival | ₹340 | ₹450 | 20 |
-| Peony Candle | Candle | — | ₹135 | ₹180 | 25 |
-| Botanical Wax Sachet | Sachet | — | ₹150 | ₹200 | 40 |
-| The Cozy Gift Box | Gift | Seasonal | ₹1,399 | — | 8 |
+| # | Product (as printed in the PDF) | Category | Price |
+|---|--------------------------------|----------|-------|
+| 1 | Yellow Urli Candle – 3.5 inch | Urli | ₹315 |
+| 2 | Red Urli Candle – 3.5 Inch | Urli | ₹315 |
+| 3 | 4 Leaf Urli Candle – White 1 | Urli | ₹330 |
+| 4 | 4 Leaf Urli Candle - Blue | Urli | ₹330 |
+| 5 | Lotus Pond Urli Candle | Urli | ₹1,100 |
+| 6 | White Star Urli Candle | Urli | ₹330 |
+| 7 | Pink Star Urli Candle | Urli | ₹330 |
+| 8 | Pastel Urli Candle - 5.5 inch | Urli | ₹570 |
+| 9 | Pastel Urli Candle – 4.5 inch | Urli | ₹450 |
+| 10 | Deep Urli Candle | Urli | ₹330 |
+| 11 | Dark Urli Candle 1– 4.5 inch | Urli | ₹450 |
+| 12 | Mataji Feet Urli Candle – 3.5 inch | Urli | ₹315 |
+| 13 | 4 Leaf Urli Candle – White 2 | Urli | ₹330 |
+| 14 | White Urli Candle - 4.5 inch | Urli | ₹450 |
+| 15 | Dark Urli Candle 2 – 4.5 inch | Urli | ₹450 |
+| 16 | Red Urli Candle 5.5 inch | Urli | ₹570 |
+| 17 | Wooden Boat Candle | Wooden | ₹660 *(any design / colour)* |
+| 18 | Wooden Round Candle | Wooden | ₹900 *(any design / colour)* |
+| 19 | Peony Candle | Candle | ₹180 |
+| 20 | Ceramic Jar Candle | Candle | Price on request |
+| 21 | Modak Candle | Candle | ₹60 *(starting)* |
+| 22 | Tin Jar Candle | Candle | ₹300 |
+| 23 | Tealight Candle | Candle | ₹50 |
+| 24 | Glass Jar Candle *(large)* | Candle | ₹1,299 |
+| 25 | Christmas Tree Candle | Candle | Price on request |
+| 26 | Sea Shell Candle | Candle | Price on request |
+| 27 | Glass Jar Candle | Candle | ₹330 |
+| 28 | Pillar Candle | Candle | ₹150 |
+| 29 | Wax Sachet | Sachet | ₹200 *(any design, colour & fragrance)* |
 
-Products are grouped and listed by type — **Urlis → Wooden → Candles → Wax Sachets → Gift Sets**
+Products are grouped and listed by type — **Urlis → Wooden → Candles → Wax Sachets**
 (see `CATEGORY_ORDER` in `js/main.js` and the filter pills in `index.html`).
 
-**Fragrances offered (from catalogue):** Cactus Blossom, Lavender, Lemongrass, Channel No.5, Coffee,
+Product photos are cropped directly from the catalogue PDF (each verified against its printed caption);
+the Wax Sachet uses the full-resolution studio photo.
+
+**Fragrances offered (page 10 of the PDF):** Cactus Blossom, Lavender, Lemongrass, Channel No.5, Coffee,
 Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
+
+**Box packaging:** available for the festive season at additional cost, starting @ ₹40/-
 
 **Contact:** 8197541100 · @thecozyglowcandles
 
@@ -141,7 +167,6 @@ Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
   "category": "candle",
   "tag": "",
   "price": 599,
-  "stock": 10,
   "scent": "Note 1 · Note 2 · Note 3",
   "desc": "Product description",
   "burn": "40–45 hours",
@@ -215,6 +240,13 @@ Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
 ## Changelog
 
 ### 2026-11-10
+- **Full PDF catalogue** — all **29 products** from `Documents/The_Cozy_Glow_Catalogue_Retailv2.pdf`, with names and retail prices exactly as printed
+- **PDF product photography** — every card photo cropped from the catalogue PDF (each verified against its printed caption); Wax Sachet uses the full-res studio photo
+- **Retail prices only** — 25%-off / struck-through MRP display removed; `mrp` field dropped from the CMS
+- **Price on Request** — `price: null` renders as "Price on Request" (Ceramic Jar, Christmas Tree, Sea Shell Candle)
+- **Fragrances** — the 11 catalogue fragrances + box-packaging note (@ ₹40) added to the Scents section
+- **Gift Sets removed** — no gift-set product in the PDF (festive box packaging is an add-on), pill and CMS option dropped
+- *(superseded below)* earlier same-day 9-product festive-price line-up
 - **Real product photography** — replaced all 6 SVG placeholders with real product photos (9 products)
 - **Catalogue alignment** — product lineup, sizes and prices now match the printed retail catalogue
 - **Festive pricing** — added optional `mrp` field; cards show MRP struck through next to the 25%-off price

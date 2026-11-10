@@ -154,3 +154,12 @@ footer{background:var(--charcoal);color:rgba(250,246,240,0.65);padding:4rem 2rem
   nav .nav-links{display:none}
   .newsletter-form{flex-direction:column}
 }
+
+/* Fragrances + packaging note (from the printed catalogue) */
+.fragrance-block{margin-top:2.5rem;text-align:center}
+.fragrance-title{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--taupe);margin-bottom:1.1rem}
+.fragrance-list{display:flex;flex-wrap:wrap;justify-content:center;gap:0.55rem}
+.fragrance-chip{font-size:0.78rem;letter-spacing:0.06em;color:var(--cream);border:1px solid rgba(196,168,130,0.4);padding:0.4rem 0.9rem;border-radius:20px;transition:all 0.2s}
+.fragrance-chip:hover{background:rgba(196,168,130,0.12);border-color:var(--taupe)}
+.fragrance-note{margin-top:1.4rem;font-size:0.78rem;color:rgba(250,246,240,0.5);font-style:italic}
+.price-on-request{font-size:0.88rem;color:var(--taupe-dark);font-weight:400;letter-spacing:0.04em}

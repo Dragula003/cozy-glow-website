@@ -21,7 +21,6 @@ collections:
           - { label: "Wooden", value: "wooden" }
           - { label: "Candle", value: "candle" }
           - { label: "Wax Sachet", value: "sachet" }
-          - { label: "Gift Set", value: "gift" }
       - label: "Tag"
         name: "tag"
         widget: "select"
@@ -31,9 +30,8 @@ collections:
           - { label: "New Arrival", value: "new" }
           - { label: "Limited Edition", value: "limited" }
           - { label: "Seasonal", value: "seasonal" }
-      - { label: "Price (₹)", name: "price", widget: "number" }
-      - { label: "MRP before discount (₹, optional)", name: "mrp", widget: "number", required: false }
-      - { label: "Stock", name: "stock", widget: "number" }
+      - { label: "Price (₹, leave blank for \"price on request\")", name: "price", widget: "number", required: false }
+      - { label: "Stock (optional)", name: "stock", widget: "number", required: false }
       - { label: "Scent Notes", name: "scent", widget: "string" }
       - { label: "Description", name: "desc", widget: "text" }
       - { label: "Burn Time", name: "burn", widget: "string" }
@@ -42,7 +40,11 @@ collections:
         name: "color"
         widget: "select"
         options:
+          - { label: "Urli Cream", value: "#F6EFE6" }
           - { label: "Warm Cream", value: "#F3E8DC" }
+          - { label: "Wooden Beige", value: "#F1E7DB" }
+          - { label: "Candle Cream", value: "#F7EFEA" }
+          - { label: "Sachet Linen", value: "#F3EDE4" }
           - { label: "Sage Green", value: "#EBF0E8" }
           - { label: "Blush", value: "#F5EEE8" }
           - { label: "Lavender", value: "#F0EAF5" }
