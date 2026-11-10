@@ -55,6 +55,8 @@ function renderProducts() {
     const image = p.image ? escapeHTML(p.image) : '';
     const alt = escapeHTML(p.name || 'Product');
     const price = (p.price || 0).toLocaleString('en-IN');
+    const mrpVal = Number(p.mrp);
+    const mrp = mrpVal && mrpVal > (Number(p.price) || 0) ? mrpVal.toLocaleString('en-IN') : '';
 
     return `
     <div class="product-card" style="transition-delay:${i*60}ms">
@@ -72,7 +74,7 @@ function renderProducts() {
           ${size ? `<span>📦 ${size}</span>` : ''}
         </div>
         <div class="product-footer">
-          <span class="product-price">₹${price}</span>
+          <span class="product-price">${mrp ? `<s class="product-price-mrp" title="MRP">₹${mrp}</s>` : ''}₹${price}</span>
           <a href="${link}" target="_blank" rel="noopener noreferrer" class="product-btn">Shop Now</a>
         </div>
       </div>
@@ -111,7 +113,7 @@ function giftSVG() {
 function loadTestimonials() {
   const grid = document.getElementById('testimonials-grid');
   const defaultTestimonials = [
-    { text: '"The Vanilla Amber candle has become a staple in my home. The throw is incredible and burns so cleanly. Ordered three more as gifts — everyone was obsessed!"', name: 'Priya M.', location: 'Bengaluru', initial: 'P' },
+    { text: '"The Wooden Boat candle has become a staple in my home. The throw is incredible and burns so cleanly. Ordered three more as gifts — everyone was obsessed!"', name: 'Priya M.', location: 'Bengaluru', initial: 'P' },
     { text: '"The botanical wax sachets are absolutely gorgeous. The fragrance lasts for weeks. The packaging alone felt like a luxury gift."', name: 'Roshni A.', location: 'Mumbai', initial: 'R' },
     { text: '"Ordered the gift box for my sister\'s birthday and she cried happy tears. Will always be my go-to gifting brand."', name: 'Sneha K.', location: 'Pune', initial: 'S' }
   ];

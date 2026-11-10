@@ -42,6 +42,7 @@ section{padding:var(--section-gap) 2rem}
 
 #products{background:var(--warm-white)}
 .products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.products-note{font-size:0.8rem;color:var(--mid);letter-spacing:0.05em;margin-top:-0.6rem}
 .filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
 .filter-pill{display:inline-block;padding:0.4rem 1rem;border:1px solid var(--border);border-radius:20px;font-size:0.78rem;letter-spacing:0.06em;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--mid);font-family:'Jost',sans-serif}
 .filter-pill:hover,.filter-pill.active{background:var(--charcoal);color:var(--cream);border-color:var(--charcoal)}
@@ -63,6 +64,7 @@ section{padding:var(--section-gap) 2rem}
 .product-meta-row{display:flex;gap:0.75rem;font-size:0.75rem;color:var(--mid);margin-bottom:0.8rem}
 .product-footer{display:flex;align-items:center;justify-content:space-between}
 .product-price{font-weight:500;font-size:1.05rem;color:var(--charcoal)}
+.product-price-mrp{font-weight:400;font-size:0.82rem;color:var(--mid);text-decoration:line-through;margin-right:0.35rem}
 .product-btn{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--taupe-dark);text-decoration:none;border-bottom:1px solid var(--taupe);padding-bottom:1px;transition:color 0.2s}
 .product-btn:hover{color:var(--charcoal);border-color:var(--charcoal)}
 .no-products{text-align:center;padding:4rem;color:var(--mid);grid-column:1/-1}

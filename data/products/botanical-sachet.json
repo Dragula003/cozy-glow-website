@@ -2,13 +2,14 @@
   "name": "Botanical Wax Sachet",
   "category": "sachet",
   "tag": "",
-  "price": 349,
-  "stock": 30,
-  "scent": "Lavender · Rose · Dried botanicals",
-  "desc": "Flameless fragrance for drawers, wardrobes, and small spaces. A wearable piece of art.",
+  "price": 150,
+  "mrp": 200,
+  "stock": 40,
+  "scent": "Custom fragrance: Rose · Lavender · Lemongrass +8 more",
+  "desc": "Flameless fragrance for drawers, wardrobes and small spaces. Customisable design, colour and fragrance.",
   "burn": "Lasts 4–6 weeks",
-  "size": "Single tablet",
+  "size": "Single sachet",
   "color": "#F5EEE8",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/botanical-sachet.svg"
+  "image": "/images/botanical-wax-sachet.jpg"
 }

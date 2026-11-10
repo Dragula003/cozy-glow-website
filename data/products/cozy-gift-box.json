@@ -1,14 +1,14 @@
 {
   "name": "The Cozy Gift Box",
   "category": "gift",
-  "tag": "",
+  "tag": "seasonal",
   "price": 1399,
   "stock": 8,
-  "scent": "Curated fragrance pairing",
-  "desc": "2 candles + 2 botanical sachets, beautifully packaged. Perfect for every occasion.",
+  "scent": "Curated fragrance pairing of your choice",
+  "desc": "2 candles + 2 botanical wax sachets, beautifully packaged in our festive gift box (box from ₹40).",
   "burn": "Varies by selection",
   "size": "Gift box set",
-  "color": "#F5EEE8",
+  "color": "#EBF0E8",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/cozy-gift-box.svg"
+  "image": "/images/cozy-gift-box.jpg"
 }

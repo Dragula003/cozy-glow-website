@@ -49,15 +49,18 @@ cozy-glow-website/
 │   │   └── cozy-gift-box.json
 │   └── settings/
 │       └── general.json    ← Site-wide settings (hero, about)
-├── images/                 ← Product and site images (SVG placeholders)
+├── images/                 ← Product and site images (real product photos)
 │   ├── hero.svg
 │   ├── about.svg
-│   ├── vanilla-amber.svg
-│   ├── eucalyptus-mint.svg
-│   ├── lavender-dreams.svg
-│   ├── cinnamon-spice.svg
-│   ├── botanical-sachet.svg
-│   └── cozy-gift-box.svg
+│   ├── urli-star.jpg
+│   ├── urli-rose.jpg
+│   ├── urli-lotus-pond.jpg
+│   ├── wooden-boat-candle.jpg
+│   ├── wooden-round-candle.jpg
+│   ├── glass-jar-candle.jpg
+│   ├── peony-candle.jpg
+│   ├── botanical-wax-sachet.jpg
+│   └── cozy-gift-box.jpg
 ├── _headers                ← Netlify custom security headers
 ├── robots.txt              ← SEO crawler rules
 ├── netlify.toml            ← Netlify build/deploy configuration
@@ -88,14 +91,25 @@ cozy-glow-website/
 
 ## Products (Current)
 
-| Product | Category | Tag | Price | Stock |
-|---------|----------|-----|-------|-------|
-| Vanilla Amber | Candle | Bestseller | ₹599 | 15 |
-| Eucalyptus & Mint | Candle | New Arrival | ₹599 | 20 |
-| Lavender Dreams | Candle | — | ₹599 | 12 |
-| Cinnamon Spice | Candle | Bestseller | ₹599 | 18 |
-| Botanical Wax Sachet | Sachet | — | ₹349 | 30 |
-| The Cozy Gift Box | Gift | — | ₹1,399 | 8 |
+Aligned with the printed catalogue (`The_Cozy_Glow_Catalogue_Retail_25% Discount - Bulk Prices.pptx`).
+`price` = festive price (flat 25% off), `mrp` = original retail price shown struck through.
+
+| Product | Category | Tag | Price | MRP | Stock |
+|---------|----------|-----|-------|-----|-------|
+| Star Urli Candle (4.5") | Candle | Seasonal | ₹340 | ₹450 | 15 |
+| Rose Urli Candle (5.5") | Candle | — | ₹430 | ₹570 | 10 |
+| Lotus Pond Urli | Candle | Limited | ₹825 | ₹1,100 | 6 |
+| Wooden Boat Candle | Candle | Bestseller | ₹495 | ₹660 | 12 |
+| Wooden Round Candle | Candle | — | ₹675 | ₹900 | 8 |
+| Glass Jar Candle | Candle | New Arrival | ₹340 | ₹450 | 20 |
+| Peony Candle | Candle | — | ₹135 | ₹180 | 25 |
+| Botanical Wax Sachet | Sachet | — | ₹150 | ₹200 | 40 |
+| The Cozy Gift Box | Gift | Seasonal | ₹1,399 | — | 8 |
+
+**Fragrances offered (from catalogue):** Cactus Blossom, Lavender, Lemongrass, Channel No.5, Coffee,
+Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
+
+**Contact:** 8197541100 · @thecozyglowcandles
 
 ---
 
@@ -140,13 +154,16 @@ cozy-glow-website/
 
 ---
 
-## How to Replace SVG Placeholders with Real Photos
+## How to Replace a Product Photo
 
-1. Download product photos from Instagram
-2. Add them to the `images/` folder (e.g., `vanilla-amber.jpg`)
-3. Update the product JSON: change `"image": "/images/vanilla-amber.svg"` to `"image": "/images/vanilla-amber.jpg"`
-4. Run `bash build.sh`
-5. Commit and push
+1. Add the photo to the `images/` folder (e.g., `urli-star.jpg`) — 1000px max side, ~80% JPEG quality
+2. Update the product JSON in `data/products/`: change `"image"` to the new path
+3. Run `bash build.sh` to regenerate `data/products.json`
+4. Commit and push
+
+> ✅ Done (2026-11-10): all 9 products now use real product photography instead of SVG placeholders.
+> Source images: `Documents/Default Project/Chatgpt Images without Box/` (primary) and
+> `Documents/Default Project/Chatgpt images with box/` (gift box).
 
 ---
 
@@ -193,6 +210,14 @@ cozy-glow-website/
 ---
 
 ## Changelog
+
+### 2026-11-10
+- **Real product photography** — replaced all 6 SVG placeholders with real product photos (9 products)
+- **Catalogue alignment** — product lineup, sizes and prices now match the printed retail catalogue
+- **Festive pricing** — added optional `mrp` field; cards show MRP struck through next to the 25%-off price
+- **New products** — Star Urli, Rose Urli, Lotus Pond Urli, Wooden Boat, Wooden Round, Glass Jar, Peony Candle
+- **Removed** — "Wax Melts" filter (no such product in the catalogue); "Wax Melts" category removed from CMS
+- **CMS** — `mrp` (MRP before discount) field added to the Products collection
 
 ### 2026-07-20
 - **Initial release** — full website created from scratch

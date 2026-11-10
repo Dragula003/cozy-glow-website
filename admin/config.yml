@@ -16,7 +16,7 @@ collections:
       - label: "Category"
         name: "category"
         widget: "select"
-        options: ["candle", "sachet", "gift", "wax-melt"]
+        options: ["candle", "sachet", "gift"]
       - label: "Tag"
         name: "tag"
         widget: "select"
@@ -27,6 +27,7 @@ collections:
           - { label: "Limited Edition", value: "limited" }
           - { label: "Seasonal", value: "seasonal" }
       - { label: "Price (₹)", name: "price", widget: "number" }
+      - { label: "MRP before discount (₹, optional)", name: "mrp", widget: "number", required: false }
       - { label: "Stock", name: "stock", widget: "number" }
       - { label: "Scent Notes", name: "scent", widget: "string" }
       - { label: "Description", name: "desc", widget: "text" }
