@@ -2,6 +2,16 @@ const STORAGE_KEY = 'cozyGlowCatalogue_v1';
 let allProducts = [];
 let activeFilter = 'all';
 
+// Products are listed by type: Urlis → Wooden → Candles → Wax Sachets → Gift Sets
+const CATEGORY_ORDER = ['urli', 'wooden', 'candle', 'sachet', 'gift'];
+function sortByType(list) {
+  return list.slice().sort((a, b) => {
+    const ia = CATEGORY_ORDER.indexOf(a.category);
+    const ib = CATEGORY_ORDER.indexOf(b.category);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+  });
+}
+
 function escapeHTML(str) {
   if (!str) return '';
   const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' };
@@ -30,6 +40,7 @@ async function loadProducts() {
       allProducts = [];
     }
   }
+  allProducts = sortByType(allProducts);
   renderProducts();
   loadTestimonials();
 }

@@ -16,7 +16,12 @@ collections:
       - label: "Category"
         name: "category"
         widget: "select"
-        options: ["candle", "sachet", "gift"]
+        options:
+          - { label: "Urli", value: "urli" }
+          - { label: "Wooden", value: "wooden" }
+          - { label: "Candle", value: "candle" }
+          - { label: "Wax Sachet", value: "sachet" }
+          - { label: "Gift Set", value: "gift" }
       - label: "Tag"
         name: "tag"
         widget: "select"

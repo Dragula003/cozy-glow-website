@@ -64,7 +64,7 @@
 ,
 {
   "name": "Lotus Pond Urli",
-  "category": "candle",
+  "category": "urli",
   "tag": "limited",
   "price": 825,
   "mrp": 1100,
@@ -80,7 +80,7 @@
 ,
 {
   "name": "Rose Urli Candle",
-  "category": "candle",
+  "category": "urli",
   "tag": "",
   "price": 430,
   "mrp": 570,
@@ -96,7 +96,7 @@
 ,
 {
   "name": "Star Urli Candle",
-  "category": "candle",
+  "category": "urli",
   "tag": "seasonal",
   "price": 340,
   "mrp": 450,
@@ -112,7 +112,7 @@
 ,
 {
   "name": "Wooden Boat Candle",
-  "category": "candle",
+  "category": "wooden",
   "tag": "bestseller",
   "price": 495,
   "mrp": 660,
@@ -128,7 +128,7 @@
 ,
 {
   "name": "Wooden Round Candle",
-  "category": "candle",
+  "category": "wooden",
   "tag": "",
   "price": 675,
   "mrp": 900,

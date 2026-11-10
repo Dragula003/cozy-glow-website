@@ -96,15 +96,18 @@ Aligned with the printed catalogue (`The_Cozy_Glow_Catalogue_Retail_25% Discount
 
 | Product | Category | Tag | Price | MRP | Stock |
 |---------|----------|-----|-------|-----|-------|
-| Star Urli Candle (4.5") | Candle | Seasonal | ₹340 | ₹450 | 15 |
-| Rose Urli Candle (5.5") | Candle | — | ₹430 | ₹570 | 10 |
-| Lotus Pond Urli | Candle | Limited | ₹825 | ₹1,100 | 6 |
-| Wooden Boat Candle | Candle | Bestseller | ₹495 | ₹660 | 12 |
-| Wooden Round Candle | Candle | — | ₹675 | ₹900 | 8 |
+| Star Urli Candle (4.5") | Urli | Seasonal | ₹340 | ₹450 | 15 |
+| Rose Urli Candle (5.5") | Urli | — | ₹430 | ₹570 | 10 |
+| Lotus Pond Urli | Urli | Limited | ₹825 | ₹1,100 | 6 |
+| Wooden Boat Candle | Wooden | Bestseller | ₹495 | ₹660 | 12 |
+| Wooden Round Candle | Wooden | — | ₹675 | ₹900 | 8 |
 | Glass Jar Candle | Candle | New Arrival | ₹340 | ₹450 | 20 |
 | Peony Candle | Candle | — | ₹135 | ₹180 | 25 |
 | Botanical Wax Sachet | Sachet | — | ₹150 | ₹200 | 40 |
 | The Cozy Gift Box | Gift | Seasonal | ₹1,399 | — | 8 |
+
+Products are grouped and listed by type — **Urlis → Wooden → Candles → Wax Sachets → Gift Sets**
+(see `CATEGORY_ORDER` in `js/main.js` and the filter pills in `index.html`).
 
 **Fragrances offered (from catalogue):** Cactus Blossom, Lavender, Lemongrass, Channel No.5, Coffee,
 Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
@@ -217,6 +220,8 @@ Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
 - **Festive pricing** — added optional `mrp` field; cards show MRP struck through next to the 25%-off price
 - **New products** — Star Urli, Rose Urli, Lotus Pond Urli, Wooden Boat, Wooden Round, Glass Jar, Peony Candle
 - **Removed** — "Wax Melts" filter (no such product in the catalogue); "Wax Melts" category removed from CMS
+- **Grouped by type** — new `urli` and `wooden` categories; filter pills: All / Urlis / Wooden / Candles / Wax Sachets / Gift Sets
+- **Listed by type** — products render in order: Urlis → Wooden → Candles → Wax Sachets → Gift Sets
 - **CMS** — `mrp` (MRP before discount) field added to the Products collection
 
 ### 2026-07-20
