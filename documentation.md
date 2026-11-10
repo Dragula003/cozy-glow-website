@@ -137,11 +137,20 @@ Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
 
 ### First-time setup (once, ~2 minutes)
 1. Get a free GitHub key: open
-   https://github.com/settings/tokens/new?scopes=public_repo&description=Cozy+Glow+Inventory
-   (while logged in as `Dragula003`), leave the boxes as they are, click **Generate token**, copy the `ghp_…` string.
+   https://github.com/settings/personal-access-tokens/new
+   (while logged in as `Dragula003`), give it a name, pick an expiration,
+   set **Repository access** → *Only select repositories* → `cozy-glow-website`,
+   and under **Repository permissions** set **Contents → Read and write** (required),
+   then **Generate token** and copy the `github_pat_…` string.
 2. Open the manager: https://cozy-glow-website.vercel.app/admin/
    (on your machine locally: `python3 -m http.server 8000` in the project folder → http://localhost:8000/admin/)
 3. Paste the key and click **Save key** — it is stored only in that browser.
+4. Press **🔑 Test key** — it confirms the key can read *and* publish (no changes are made by the test).
+
+> **“Resource not accessible by personal access token” error?** The key exists but its
+> Contents permission is missing/read-only. Fix without re-creating anything:
+> https://github.com/settings/personal-access-tokens → your token → **Edit** →
+> **Contents → Read and write** → **Save**, then press **Save & Publish** again.
 
 ### Everyday use
 1. Open `/admin/` (footer link **Owner → Inventory Manager**, or the ⚙ button on the site).
