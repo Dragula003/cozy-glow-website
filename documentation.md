@@ -262,6 +262,7 @@ A published card shows: struck original price, sale price, and a green **25% OFF
 ## Changelog
 
 ### 2026-11-11
+- **Load fix** — product files are now fetched without the publish key attached: `raw.githubusercontent.com` rejects CORS preflights, so attaching the key made the table load *zero products* after a page refresh (key still goes only to `api.github.com`)
 - **Inventory Manager** — new one-page tool at `/admin/` for editing prices, discounts, names and categories by hand, with **Save & Publish** (single GitHub commit → Vercel redeploys in ~1 min)
 - **Discounts** — optional `mrp` field back in the data: card shows struck original + sale price + green **% OFF** badge; bulk "apply to all" and "clear all" tools; discounts always computed from the original price (never compound)
 - **Price on request** — checkbox in the manager for Ceramic Jar / Christmas Tree / Sea Shell Candle
