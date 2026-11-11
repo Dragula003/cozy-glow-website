@@ -166,6 +166,12 @@ Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
 Discounts are always calculated from the original price, so applying one twice never lowers the price twice.
 A published card shows: struck original price, sale price, and a green **25% OFF** badge.
 
+### Locking the manager (passcode)
+- The page opens on a **lock screen** — enter the passcode, then **Unlock** (or press Enter).
+- Once unlocked, that browser **stays unlocked** until you click **🔒 Lock** (top-right) or clear your browser data.
+- The page stores only a one-way **hash** of the passcode — the passcode itself is never saved anywhere.
+- To change the passcode later, ask for a new one: the hash constant in `admin/index.html` (and the copy in the small inline script near the top) must both be replaced with the new SHA-256 hash.
+
 ### Adding a new product
 1. Click **＋ Add product** (in *Quick tools*).
 2. Fill in the form: **name** and **type** are required, plus original price (optional discount %, badge, fragrance, description, photo).
@@ -274,6 +280,7 @@ Notes:
 ## Changelog
 
 ### 2026-11-12
+- **Passcode lock** — `/admin/` now opens on a lock screen; the page stores only a SHA-256 *hash* of the passcode (never the passcode itself). Unlock once and that browser stays unlocked until the 🔒 **Lock** button is clicked. Note: this gates the page only — publishing still needs the GitHub key either way
 - **Hero logo** — the hero's right panel now shows the **enlarged round badge** (`images/hero-badge.jpg`, full 1280px) instead of the drawn candle illustration; the "Pure & Natural" stat card moved to the top-left corner so it doesn't cover the logo
 
 ### 2026-11-11
