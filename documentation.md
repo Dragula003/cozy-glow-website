@@ -274,6 +274,8 @@ Notes:
 ## Changelog
 
 ### 2026-11-11
+- **Logo** — round "The Cozy Glow" badge in the header (clickable, 46px) and footer (76px), plus TCG favicon + apple-touch-icon for the browser tab (`images/logo-badge.jpg`, `images/favicon.png`)
+- **Catalogue fixes** — duplicate ₹1,299 product renamed to **Premium Glass Jar Candle** (matches the bulk price lists); **Daisy Candle ₹55** added under Candles (site illustration until a photo is uploaded via the manager thumbnail click) — catalogue now 30 products
 - **Add products** — new **＋ Add product** form in the manager (name, type, price, discount, badge, fragrance, description, photo upload) and click any table thumbnail to add/replace its photo; new JSON + image files are committed on publish, in `build.sh`'s file order
 - **Load fix** — product files are now fetched without the publish key attached: `raw.githubusercontent.com` rejects CORS preflights, so attaching the key made the table load *zero products* after a page refresh (key still goes only to `api.github.com`)
 - **Inventory Manager** — new one-page tool at `/admin/` for editing prices, discounts, names and categories by hand, with **Save & Publish** (single GitHub commit → Vercel redeploys in ~1 min)

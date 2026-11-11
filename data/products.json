@@ -1,4 +1,5 @@
-[{
+[
+{
   "name": "4 Leaf Urli Candle - Blue",
   "category": "urli",
   "tag": "",
@@ -12,7 +13,8 @@
   "image": "/images/4-leaf-urli-candle-blue.jpg",
   "mrp": 330
 }
-,{
+,
+{
   "name": "4 Leaf Urli Candle – White 1",
   "category": "urli",
   "tag": "",
@@ -26,7 +28,8 @@
   "image": "/images/4-leaf-urli-candle-white-1.jpg",
   "mrp": 330
 }
-,{
+,
+{
   "name": "4 Leaf Urli Candle – White 2",
   "category": "urli",
   "tag": "",
@@ -40,7 +43,8 @@
   "image": "/images/4-leaf-urli-candle-white-2.jpg",
   "mrp": 330
 }
-,{
+,
+{
   "name": "Ceramic Jar Candle",
   "category": "candle",
   "tag": "",
@@ -53,7 +57,8 @@
   "link": "https://www.instagram.com/thecozyglowcandles/",
   "image": "/images/ceramic-jar-candle.jpg"
 }
-,{
+,
+{
   "name": "Christmas Tree Candle",
   "category": "candle",
   "tag": "",
@@ -66,7 +71,22 @@
   "link": "https://www.instagram.com/thecozyglowcandles/",
   "image": "/images/christmas-tree-candle.jpg"
 }
-,{
+,
+{
+  "name": "Daisy Candle",
+  "category": "candle",
+  "tag": "",
+  "price": 55,
+  "scent": "Choice of 11 fragrances",
+  "desc": "A cheerful hand-moulded daisy candle.",
+  "burn": "",
+  "size": "",
+  "color": "#F7EFEA",
+  "link": "https://www.instagram.com/thecozyglowcandles/",
+  "image": ""
+}
+,
+{
   "name": "Dark Urli Candle 1– 4.5 inch",
   "category": "urli",
   "tag": "",
@@ -80,7 +100,8 @@
   "image": "/images/dark-urli-candle-1.jpg",
   "mrp": 450
 }
-,{
+,
+{
   "name": "Dark Urli Candle 2 – 4.5 inch",
   "category": "urli",
   "tag": "",
@@ -94,7 +115,8 @@
   "image": "/images/dark-urli-candle-2.jpg",
   "mrp": 450
 }
-,{
+,
+{
   "name": "Deep Urli Candle",
   "category": "urli",
   "tag": "",
@@ -108,8 +130,9 @@
   "image": "/images/deep-urli-candle.jpg",
   "mrp": 330
 }
-,{
-  "name": "Glass Jar Candle",
+,
+{
+  "name": "Premium Glass Jar Candle",
   "category": "candle",
   "tag": "",
   "price": 1169,
@@ -122,7 +145,8 @@
   "image": "/images/glass-jar-candle-large.jpg",
   "mrp": 1299
 }
-,{
+,
+{
   "name": "Glass Jar Candle",
   "category": "candle",
   "tag": "",
@@ -136,7 +160,8 @@
   "image": "/images/glass-jar-candle.jpg",
   "mrp": 330
 }
-,{
+,
+{
   "name": "Lotus Pond Urli Candle",
   "category": "urli",
   "tag": "",
@@ -150,7 +175,8 @@
   "image": "/images/lotus-pond-urli-candle.jpg",
   "mrp": 1100
 }
-,{
+,
+{
   "name": "Mataji Feet Urli Candle – 3.5 inch",
   "category": "urli",
   "tag": "",
@@ -164,7 +190,8 @@
   "image": "/images/mataji-feet-urli-candle.jpg",
   "mrp": 315
 }
-,{
+,
+{
   "name": "Modak Candle",
   "category": "candle",
   "tag": "",
@@ -178,7 +205,8 @@
   "image": "/images/modak-candle.jpg",
   "mrp": 60
 }
-,{
+,
+{
   "name": "Pastel Urli Candle – 4.5 inch",
   "category": "urli",
   "tag": "",
@@ -192,7 +220,8 @@
   "image": "/images/pastel-urli-candle-4-5-inch.jpg",
   "mrp": 450
 }
-,{
+,
+{
   "name": "Pastel Urli Candle - 5.5 inch",
   "category": "urli",
   "tag": "",
@@ -206,7 +235,8 @@
   "image": "/images/pastel-urli-candle-5-5-inch.jpg",
   "mrp": 570
 }
-,{
+,
+{
   "name": "Peony Candle",
   "category": "candle",
   "tag": "",
@@ -220,7 +250,8 @@
   "image": "/images/peony-candle.jpg",
   "mrp": 180
 }
-,{
+,
+{
   "name": "Pillar Candle",
   "category": "candle",
   "tag": "",
@@ -234,7 +265,8 @@
   "image": "/images/pillar-candle.jpg",
   "mrp": 150
 }
-,{
+,
+{
   "name": "Pink Star Urli Candle",
   "category": "urli",
   "tag": "",
@@ -248,7 +280,8 @@
   "image": "/images/pink-star-urli-candle.jpg",
   "mrp": 330
 }
-,{
+,
+{
   "name": "Red Urli Candle – 3.5 Inch",
   "category": "urli",
   "tag": "",
@@ -262,7 +295,8 @@
   "image": "/images/red-urli-candle-3-5-inch.jpg",
   "mrp": 315
 }
-,{
+,
+{
   "name": "Red Urli Candle 5.5 inch",
   "category": "urli",
   "tag": "",
@@ -276,7 +310,8 @@
   "image": "/images/red-urli-candle-5-5-inch.jpg",
   "mrp": 570
 }
-,{
+,
+{
   "name": "Sea Shell Candle",
   "category": "candle",
   "tag": "",
@@ -289,7 +324,8 @@
   "link": "https://www.instagram.com/thecozyglowcandles/",
   "image": "/images/sea-shell-candle.jpg"
 }
-,{
+,
+{
   "name": "Tealight Candle",
   "category": "candle",
   "tag": "",
@@ -303,7 +339,8 @@
   "image": "/images/tealight-candle.jpg",
   "mrp": 50
 }
-,{
+,
+{
   "name": "Tin Jar Candle",
   "category": "candle",
   "tag": "",
@@ -317,7 +354,8 @@
   "image": "/images/tin-jar-candle.jpg",
   "mrp": 300
 }
-,{
+,
+{
   "name": "Wax Sachet",
   "category": "sachet",
   "tag": "",
@@ -331,7 +369,8 @@
   "image": "/images/wax-sachet.jpg",
   "mrp": 200
 }
-,{
+,
+{
   "name": "White Star Urli Candle",
   "category": "urli",
   "tag": "",
@@ -345,7 +384,8 @@
   "image": "/images/white-star-urli-candle.jpg",
   "mrp": 330
 }
-,{
+,
+{
   "name": "White Urli Candle - 4.5 inch",
   "category": "urli",
   "tag": "",
@@ -359,7 +399,8 @@
   "image": "/images/white-urli-candle-4-5-inch.jpg",
   "mrp": 450
 }
-,{
+,
+{
   "name": "Wooden Boat Candle",
   "category": "wooden",
   "tag": "",
@@ -373,7 +414,8 @@
   "image": "/images/wooden-boat-candle.jpg",
   "mrp": 660
 }
-,{
+,
+{
   "name": "Wooden Round Candle",
   "category": "wooden",
   "tag": "",
@@ -387,7 +429,8 @@
   "image": "/images/wooden-round-candle.jpg",
   "mrp": 900
 }
-,{
+,
+{
   "name": "Yellow Urli Candle – 3.5 inch",
   "category": "urli",
   "tag": "",
