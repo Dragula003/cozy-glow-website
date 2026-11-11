@@ -66,6 +66,9 @@
   tr.dirty-row{background:#FFFBF0}
   tr.hidden{display:none}
   .thumb{width:54px;height:54px;border-radius:5px;object-fit:cover;border:1px solid var(--line);background:var(--cream);display:block}
+  .thumb-add{cursor:pointer;color:var(--mid);font-size:1.15rem}
+  .thumb[onclick]{cursor:pointer}
+  .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 16px}
   .pname{width:100%;min-width:170px;font-weight:500}
   .num{width:96px}
   .pct{width:70px}
@@ -148,9 +151,79 @@
         <label class="mini">Discounts</label>
         <button class="btn btn-danger" onclick="clearAllDiscounts()">Clear all discounts</button>
       </div>
+      <div style="border-left:1px solid var(--line);padding-left:16px">
+        <label class="mini">New listing</label>
+        <button class="btn btn-primary" onclick="toggleAddForm()">＋ Add product</button>
+      </div>
     </div>
     <div class="hint">Discounts are always calculated from the <b>original price</b>, so applying one twice never lowers the price twice.</div>
   </div>
+
+  <!-- ADD PRODUCT -->
+  <div class="card" id="add-card" style="display:none">
+    <h2>Add a new product</h2>
+    <p>Fill this in, click <b>＋ Add to list</b>, then <b>Save &amp; Publish</b> — it appears on your website in about a minute.</p>
+    <div class="form-grid">
+      <div>
+        <label class="mini" for="np-name">Product name *</label>
+        <input id="np-name" placeholder="e.g. Rose Petal Urli" oninput="updateAddPreview()" style="width:100%">
+        <div class="hint" id="np-slug" style="margin-top:4px"></div>
+      </div>
+      <div>
+        <label class="mini" for="np-cat">Type *</label>
+        <select id="np-cat" style="width:100%">
+          <option value="urli">Urlis</option>
+          <option value="wooden">Wooden</option>
+          <option value="candle" selected>Candles</option>
+          <option value="sachet">Wax Sachets</option>
+        </select>
+      </div>
+      <div>
+        <label class="mini" for="np-tag">Badge (optional)</label>
+        <select id="np-tag" style="width:100%">
+          <option value="">No badge</option>
+          <option value="bestseller">Bestseller</option>
+          <option value="new">New Arrival</option>
+          <option value="limited">Limited Edition</option>
+          <option value="seasonal">Seasonal</option>
+        </select>
+      </div>
+      <div>
+        <label class="mini" for="np-price">Original price (₹) *</label>
+        <input type="number" id="np-price" min="1" step="1" placeholder="180" oninput="updateAddPreview()" style="width:100%">
+      </div>
+      <div>
+        <label class="mini" for="np-disc">Discount %</label>
+        <input type="number" id="np-disc" min="0" max="95" step="1" placeholder="0" oninput="updateAddPreview()" style="width:100%">
+      </div>
+      <div>
+        <label class="mini" for="np-scent">Fragrance / note (optional)</label>
+        <input id="np-scent" placeholder="Choice of 11 fragrances" style="width:100%">
+      </div>
+      <div style="grid-column:1/-1">
+        <label class="mini" for="np-desc">Short description (optional)</label>
+        <input id="np-desc" placeholder="A hand-moulded candle with delicate petal detail." style="width:100%">
+      </div>
+      <div>
+        <label class="mini" for="np-img">Photo (optional)</label>
+        <input type="file" id="np-img" accept="image/jpeg,image/png,image/webp">
+        <div class="hint" style="margin-top:4px">JPG, PNG or WebP, up to 8 MB. No photo? The site draws its own candle illustration.</div>
+      </div>
+      <div>
+        <label class="mini">Price display</label>
+        <label style="display:flex;gap:8px;align-items:center;font-size:.88rem;cursor:pointer">
+          <input type="checkbox" id="np-onreq" onchange="updateAddPreview()"> Price on request instead of ₹</label>
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <span class="hint" id="np-preview" style="margin:0"></span>
+      <span class="grow"></span>
+      <button class="btn" onclick="hideAddForm()">Cancel</button>
+      <button class="btn btn-primary" onclick="addProductToList()">＋ Add to list</button>
+    </div>
+  </div>
+
+  <input type="file" id="img-input" accept="image/jpeg,image/png,image/webp" style="display:none">
 
   <!-- STATUS + SAVE -->
   <div class="card" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
@@ -266,6 +339,147 @@ function forgetKey(){
 }
 function renderSetup(){ $('setup-card').style.display = key ? 'none' : ''; }
 
+/* ================= add / photo ================= */
+function toggleAddForm(){
+  const c = $('add-card');
+  const show = c.style.display === 'none';
+  c.style.display = show ? '' : 'none';
+  if (show) { $('np-name').focus(); updateAddPreview(); }
+}
+function hideAddForm(){ $('add-card').style.display = 'none'; }
+
+function makeSlug(name){
+  return String(name || '').toLowerCase().trim()
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+function extFromDataURL(u){
+  const m = /^data:image\/([a-z0-9]+)/i.exec(u || '');
+  const t = m ? m[1].toLowerCase() : '';
+  return t === 'png' || t === 'webp' ? t : 'jpg';
+}
+
+function updateAddPreview(){
+  const onReq = $('np-onreq').checked;
+  const orig = Number($('np-price').value);
+  const disc = clampPct(Number($('np-disc').value) || 0);
+  const name = $('np-name').value.trim();
+  $('np-price').disabled = onReq;
+  $('np-disc').disabled = onReq;
+  $('np-slug').textContent = name ? 'Saves as: ' + (makeSlug(name) || '—') + '.json' : '';
+  let txt = '';
+  if (onReq) txt = 'Will show “Price on Request”.';
+  else if (orig > 0) txt = disc > 0
+    ? 'Customer pays ' + inr(Math.round(orig * (1 - disc / 100))) + ' — ' + disc + '% off ' + inr(orig)
+    : 'Customer pays ' + inr(orig) + ' · no discount';
+  $('np-preview').textContent = txt;
+}
+
+function makeNewProduct(o){
+  const name = String(o.name || '').trim();
+  if (!name) return {error: 'Enter a product name.'};
+  const slug = makeSlug(name);
+  if (!slug) return {error: 'The name must contain letters or numbers.'};
+  const file = slug + '.json';
+  if (products.some(p => p.file === file)) return {error: '“' + name + '” already exists in the list.'};
+  let price = null, mrp = null;
+  if (!o.onRequest) {
+    const orig = Number(o.original);
+    if (!orig || orig < 1) return {error: 'Enter an original price (or tick “Price on request”).'};
+    const disc = clampPct(Number(o.discount) || 0);
+    if (disc > 0) { mrp = orig; price = Math.round(orig * (1 - disc / 100)); }
+    else price = orig;
+  }
+  const data = {
+    name,
+    category: CATEGORIES.includes(o.category) ? o.category : 'candle',
+    tag: o.tag || '',
+    price,
+    scent: o.scent || '',
+    desc: o.desc || '',
+    burn: '',
+    size: '',
+    color: '#F3E8DC',
+    link: 'https://www.instagram.com/thecozyglowcandles/',
+    image: ''
+  };
+  if (mrp != null) data.mrp = mrp;
+  const p = {file, data, snapshot: ''};   // snapshot '' → always counted as unsaved
+  if (o.imageDataUrl) {
+    const ext = extFromDataURL(o.imageDataUrl);
+    data.image = '/images/' + slug + '.' + ext;
+    p._stagedImage = {path: 'images/' + slug + '.' + ext, b64: String(o.imageDataUrl).split(',')[1] || ''};
+    p._previewUrl = o.imageDataUrl;
+  }
+  return {product: p};
+}
+
+function addProductToList(){
+  const file = $('np-img').files[0];
+  if (file) {
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { showToast('Choose a JPG, PNG or WebP image.', true); return; }
+    if (file.size > 8 * 1024 * 1024) { showToast('That photo is over 8 MB — pick a smaller one.', true); return; }
+    const r = new FileReader();
+    r.onload = () => buildNewFromForm(r.result);
+    r.onerror = () => showToast('Could not read that photo — try again.', true);
+    r.readAsDataURL(file);
+  } else buildNewFromForm('');
+}
+function buildNewFromForm(dataUrl){
+  const res = makeNewProduct({
+    name: $('np-name').value, category: $('np-cat').value, tag: $('np-tag').value,
+    original: $('np-price').value, discount: $('np-disc').value,
+    onRequest: $('np-onreq').checked, scent: $('np-scent').value, desc: $('np-desc').value,
+    imageDataUrl: dataUrl
+  });
+  if (res.error) { showToast(res.error, true); return; }
+  const p = res.product;
+  let i = products.findIndex(x => x.file.localeCompare(p.file) > 0);   // keep build.sh's alphabetical order
+  if (i < 0) i = products.length;
+  products.splice(i, 0, p);
+  renderRows(); updateStatus();
+  ['np-name', 'np-price', 'np-disc', 'np-scent', 'np-desc', 'np-img'].forEach(id => { $(id).value = ''; });
+  $('np-onreq').checked = false;
+  updateAddPreview();
+  hideAddForm();
+  if (document.querySelector) { const t = document.querySelector('table'); if (t && t.scrollIntoView) t.scrollIntoView({behavior:'smooth', block:'start'}); }
+  showToast('“' + p.data.name + '” added to the list — press Save & Publish');
+}
+
+let imgTargetIndex = -1;
+function pickImageFor(i){
+  imgTargetIndex = i;
+  const inp = $('img-input');
+  inp.value = '';
+  inp.onchange = () => handleImgFile(inp.files[0]);
+  inp.click();
+}
+function handleImgFile(file){
+  if (!file) return;
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { showToast('Choose a JPG, PNG or WebP image.', true); return; }
+  if (file.size > 8 * 1024 * 1024) { showToast('That photo is over 8 MB — pick a smaller one.', true); return; }
+  const r = new FileReader();
+  r.onload = () => stageImage(imgTargetIndex, r.result);
+  r.onerror = () => showToast('Could not read that photo — try again.', true);
+  r.readAsDataURL(file);
+}
+function stageImage(i, dataUrl){
+  const p = products[i];
+  if (!p || !dataUrl) return;
+  const slug = p.file.replace(/\.json$/, '');
+  const ext = extFromDataURL(dataUrl);
+  // replacements get a fresh file name: /images/ is cached for a year, so a new
+  // URL is the only way visitors see the new photo straight away
+  const name = p.data.image ? slug + '-r' + Date.now().toString(36) + '.' + ext : slug + '.' + ext;
+  p._stagedImage = {path: 'images/' + name, b64: String(dataUrl).split(',')[1] || ''};
+  p._previewUrl = dataUrl;
+  p.data.image = '/images/' + name;
+  renderRows(); updateStatus();
+  showToast('Photo ready — press Save & Publish to apply it');
+}
+
 /* ================= load ================= */
 async function loadProducts(){
   renderSetup();
@@ -299,7 +513,7 @@ function tidy(d){
   else if (num(out.price) != null && Number(out.mrp) === Number(out.price)) delete out.mrp;
   return out;
 }
-const isDirty = p => JSON.stringify(tidy(p.data)) !== p.snapshot;
+const isDirty = p => !!p._stagedImage || JSON.stringify(tidy(p.data)) !== p.snapshot;
 const dirtyCount = () => products.filter(isDirty).length;
 const baseOf = d => num(d.mrp) ?? num(d.price);                  // original price (never compounded)
 function discountOf(d){
@@ -323,7 +537,9 @@ function rowHTML(p, i){
   const sale = num(d.price);
   return `
     <tr data-i="${i}" class="${isDirty(p) ? 'dirty-row' : ''}" data-name="${esc((d.name||'').toLowerCase())}" data-cat="${esc(d.category||'')}">
-      <td><img class="thumb" src="${esc(d.image || '')}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"></td>
+      <td>${(p._previewUrl || d.image)
+        ? `<img class="thumb" src="${esc(p._previewUrl || d.image)}" alt="" title="Click to add or replace photo" loading="lazy" onclick="pickImageFor(${i})" onerror="this.style.visibility='hidden'">`
+        : `<div class="thumb thumb-add" title="Click to add photo" onclick="pickImageFor(${i})">＋</div>`}</td>
       <td><input class="pname" data-f="name" value="${esc(d.name || '')}"></td>
       <td><select class="cat" data-f="category">${CATEGORIES.map(c =>
           `<option value="${c}" ${d.category === c ? 'selected' : ''}>${CAT_LABEL[c]}</option>`).join('')}</select></td>
@@ -484,6 +700,7 @@ function buildFiles(){
   // combined data/products.json (what the live site loads) — same order as build.sh
   const combined = '[' + products.map(p => serialize(p.data)).join(',') + ']';
   products.forEach(p => {
+    if (p._stagedImage) files.push({path: p._stagedImage.path, base64: p._stagedImage.b64});
     if (!isDirty(p)) return;
     files.push({path: 'data/products/' + p.file, content: serialize(p.data)});
   });
@@ -491,18 +708,24 @@ function buildFiles(){
   return files;
 }
 
+const blobBody = f => JSON.stringify(f.base64
+  ? {content: f.base64, encoding: 'base64'}       // photos
+  : {content: f.content, encoding: 'utf-8'});     // JSON files
+
 async function publishOnce(files){
   const ref = await ghJSON(`/repos/${OWNER}/${REPO}/git/ref/heads/${BRANCH}`);
   const head = ref.object.sha;
   const commit = await ghJSON(`/repos/${OWNER}/${REPO}/git/commits/${head}`);
   const blobs = await Promise.all(files.map(f =>
-    ghJSON(`/repos/${OWNER}/${REPO}/git/blobs`, {method:'POST', body: JSON.stringify({content: f.content, encoding:'utf-8'})})
+    ghJSON(`/repos/${OWNER}/${REPO}/git/blobs`, {method:'POST', body: blobBody(f)})
   ));
   const tree = await ghJSON(`/repos/${OWNER}/${REPO}/git/trees`, {method:'POST',
     body: JSON.stringify({base_tree: commit.tree.sha,
       tree: files.map((f, i) => ({path: f.path, mode:'100644', type:'blob', sha: blobs[i].sha}))})});
+  const nProd = files.filter(f => f.path.startsWith('data/products/')).length;
+  const nImg = files.filter(f => f.base64).length;
   const newCommit = await ghJSON(`/repos/${OWNER}/${REPO}/git/commits`, {method:'POST',
-    body: JSON.stringify({message: `Update product prices via Inventory Manager (${files.length - 1} product file(s))`,
+    body: JSON.stringify({message: `Update products via Inventory Manager (${nProd} product file(s)${nImg ? ', ' + nImg + ' image(s)' : ''})`,
       tree: tree.sha, parents: [head]})});
   await ghJSON(`/repos/${OWNER}/${REPO}/git/refs/heads/${BRANCH}`, {method:'PATCH',
     body: JSON.stringify({sha: newCommit.sha})});
@@ -537,7 +760,7 @@ async function publish(){
     let sha;
     try { sha = await publishOnce(files); }
     catch (e) { if (e.status === 409 || e.status === 422) { status('Retrying publish…'); sha = await publishOnce(files); } else throw e; }
-    products.forEach(p => { p.snapshot = JSON.stringify(tidy(p.data)); });
+    products.forEach(p => { p.snapshot = JSON.stringify(tidy(p.data)); delete p._stagedImage; delete p._previewUrl; });
     renderRows(); updateStatus();
     status('Published ✓ — going live in about a minute', 'ok');
     showToast('✅ Published! Your site updates in ~1 minute. (commit ' + sha.slice(0,7) + ')');

@@ -166,6 +166,18 @@ Sandalwood, Vanilla, Peach Mimosa, Strawberry, American Mahogany, Rose.
 Discounts are always calculated from the original price, so applying one twice never lowers the price twice.
 A published card shows: struck original price, sale price, and a green **25% OFF** badge.
 
+### Adding a new product
+1. Click **＋ Add product** (in *Quick tools*).
+2. Fill in the form: **name** and **type** are required, plus original price (optional discount %, badge, fragrance, description, photo).
+3. Click **＋ Add to list** — the product joins the table as an unsaved change (photo included, if you picked one).
+4. Press **Save & Publish** → it's on your website in about a minute.
+
+Notes:
+- **Photo:** JPG, PNG or WebP up to 8 MB. Without one, the site draws its own candle illustration.
+- **Replacing a photo later:** click the product's thumbnail in the table, choose the file, then **Save & Publish**. Replacements get a fresh file name on purpose (images are cached for a year, so a new URL is what makes visitors see the change immediately).
+- **File names** are generated from the product name (*Rose Petal Urli* → `rose-petal-urli.json`); editing the name later does not rename the file.
+- Duplicates are blocked — adding a name that already exists shows a friendly error.
+
 ### What happens on Save
 - Only changed files are committed (`data/products/*.json` + `data/products.json`) — one Git commit.
 - Vercel sees the commit and redeploys automatically (~1 minute).
@@ -262,6 +274,7 @@ A published card shows: struck original price, sale price, and a green **25% OFF
 ## Changelog
 
 ### 2026-11-11
+- **Add products** — new **＋ Add product** form in the manager (name, type, price, discount, badge, fragrance, description, photo upload) and click any table thumbnail to add/replace its photo; new JSON + image files are committed on publish, in `build.sh`'s file order
 - **Load fix** — product files are now fetched without the publish key attached: `raw.githubusercontent.com` rejects CORS preflights, so attaching the key made the table load *zero products* after a page refresh (key still goes only to `api.github.com`)
 - **Inventory Manager** — new one-page tool at `/admin/` for editing prices, discounts, names and categories by hand, with **Save & Publish** (single GitHub commit → Vercel redeploys in ~1 min)
 - **Discounts** — optional `mrp` field back in the data: card shows struck original + sale price + green **% OFF** badge; bulk "apply to all" and "clear all" tools; discounts always computed from the original price (never compound)
