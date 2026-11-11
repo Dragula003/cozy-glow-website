@@ -2,12 +2,13 @@
   "name": "Modak Candle",
   "category": "candle",
   "tag": "",
-  "price": 60,
+  "price": 54,
   "scent": "Choice of 11 fragrances",
   "desc": "Festive modak-shaped candle — starting at ₹60.",
   "burn": "",
   "size": "",
   "color": "#F7EFEA",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/modak-candle.jpg"
+  "image": "/images/modak-candle.jpg",
+  "mrp": 60
 }

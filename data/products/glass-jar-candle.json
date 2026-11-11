@@ -2,12 +2,13 @@
   "name": "Glass Jar Candle",
   "category": "candle",
   "tag": "",
-  "price": 330,
+  "price": 297,
   "scent": "Choice of 11 fragrances",
   "desc": "Soy candle in a faceted glass jar.",
   "burn": "",
   "size": "",
   "color": "#F7EFEA",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/glass-jar-candle.jpg"
+  "image": "/images/glass-jar-candle.jpg",
+  "mrp": 330
 }

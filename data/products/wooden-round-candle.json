@@ -2,12 +2,13 @@
   "name": "Wooden Round Candle",
   "category": "wooden",
   "tag": "",
-  "price": 900,
+  "price": 810,
   "scent": "Choice of 11 fragrances",
   "desc": "Soy candle set in a round wooden bowl — any design / colour on request.",
   "burn": "",
   "size": "",
   "color": "#F1E7DB",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/wooden-round-candle.jpg"
+  "image": "/images/wooden-round-candle.jpg",
+  "mrp": 900
 }

@@ -2,12 +2,13 @@
   "name": "Wax Sachet",
   "category": "sachet",
   "tag": "",
-  "price": 200,
+  "price": 180,
   "scent": "Customise colour & fragrance",
   "desc": "Flameless fragrance for drawers and wardrobes — any design, colour & fragrance at ₹200.",
   "burn": "",
   "size": "",
   "color": "#F3EDE4",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/wax-sachet.jpg"
+  "image": "/images/wax-sachet.jpg",
+  "mrp": 200
 }

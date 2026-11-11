@@ -2,12 +2,13 @@
   "name": "Pillar Candle",
   "category": "candle",
   "tag": "",
-  "price": 150,
+  "price": 135,
   "scent": "Choice of 11 fragrances",
   "desc": "Classic soy pillar candle.",
   "burn": "",
   "size": "",
   "color": "#F7EFEA",
   "link": "https://www.instagram.com/thecozyglowcandles/",
-  "image": "/images/pillar-candle.jpg"
+  "image": "/images/pillar-candle.jpg",
+  "mrp": 150
 }
