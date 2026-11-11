@@ -273,6 +273,9 @@ Notes:
 
 ## Changelog
 
+### 2026-11-12
+- **Hero logo** — the hero's right panel now shows the **enlarged round badge** (`images/hero-badge.jpg`, full 1280px) instead of the drawn candle illustration; the "Pure & Natural" stat card moved to the top-left corner so it doesn't cover the logo
+
 ### 2026-11-11
 - **Logo** — round "The Cozy Glow" badge in the header (clickable, 46px) and footer (76px), plus TCG favicon + apple-touch-icon for the browser tab (`images/logo-badge.jpg`, `images/favicon.png`)
 - **Catalogue fixes** — duplicate ₹1,299 product renamed to **Premium Glass Jar Candle** (matches the bulk price lists); **Daisy Candle ₹55** added under Candles (site illustration until a photo is uploaded via the manager thumbnail click) — catalogue now 30 products

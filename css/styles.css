@@ -29,7 +29,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,249,244,
 .btn-ghost:hover{border-color:var(--taupe);color:var(--taupe-dark)}
 .hero-right{background:var(--blush);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .hero-image-container{width:100%;height:100%;position:absolute;inset:0}
-.hero-badge{position:absolute;bottom:2.5rem;left:2.5rem;background:rgba(253,249,244,0.92);border-radius:4px;padding:1rem 1.25rem;max-width:200px;border:1px solid var(--border)}
+/* top-left: the enlarged badge fills this panel, and the corner stays clear rose space */
+.hero-badge{position:absolute;top:2.5rem;left:2.5rem;background:rgba(253,249,244,0.92);border-radius:4px;padding:1rem 1.25rem;max-width:200px;border:1px solid var(--border)}
 .hero-badge-label{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--taupe)}
 .hero-badge-value{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--charcoal);margin-top:0.2rem}
 .marquee-bar{background:var(--charcoal);color:var(--blush);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.8rem 0;overflow:hidden;white-space:nowrap}
