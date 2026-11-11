@@ -280,6 +280,7 @@ Notes:
 ## Changelog
 
 ### 2026-11-12
+- **Sitemap + robots** — real `sitemap.xml` generated (single-page site → homepage entry, correct `lastmod`); `robots.txt` no longer references the unregistered `thecozyglowcandles.com` sitemap or the defunct `/.netlify/` path — it now points at the live `cozy-glow-website.vercel.app` sitemap
 - **Passcode lock** — `/admin/` now opens on a lock screen; the page stores only a SHA-256 *hash* of the passcode (never the passcode itself). Unlock once and that browser stays unlocked until the 🔒 **Lock** button is clicked. Note: this gates the page only — publishing still needs the GitHub key either way
 - **Hero logo** — the hero's right panel now shows the **enlarged round badge** (`images/hero-badge.jpg`, full 1280px) instead of the drawn candle illustration; the "Pure & Natural" stat card moved to the top-left corner so it doesn't cover the logo
 

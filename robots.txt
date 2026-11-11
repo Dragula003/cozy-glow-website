@@ -2,6 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /data/
-Disallow: /.netlify/
 
-Sitemap: https://thecozyglowcandles.com/sitemap.xml
+Sitemap: https://cozy-glow-website.vercel.app/sitemap.xml
